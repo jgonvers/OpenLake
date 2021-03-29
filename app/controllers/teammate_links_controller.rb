@@ -1,0 +1,2 @@
+class TeammateLinksController < ApplicationController
+end
