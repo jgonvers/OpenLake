@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get "/user", to: "users#homepage", as: :user
+
+  resources :events, except: :destroy do
+    resources :reviews, only: [:new, :create]
+  end
+  resources :users, only: :show do
+    member do
+      get :teammates
+      get :events_created
+      get :events_attended
+    end
+  end
 end
