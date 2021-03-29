@@ -36,8 +36,9 @@ ActiveRecord::Schema.define(version: 2021_03_29_102445) do
     t.bigint "creator_id", null: false
     t.bigint "category_id", null: false
     t.datetime "datetime"
-    t.string "status"
+    t.string "status", default: "pending"
     t.string "content"
+    t.integer "participants_maximum", default: 2
     t.index ["category_id"], name: "index_events_on_category_id"
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end
@@ -69,7 +70,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_102445) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "last_name"
     t.string "first_name"
-    t.string "role"
+    t.string "role", default: "user"
     t.string "content"
     t.string "address"
     t.float "latitude"
