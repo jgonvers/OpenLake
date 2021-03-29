@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_102445) do
 
   create_table "teammate_links", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "status"
+    t.string "status", default: "pending"
     t.bigint "teammate_id", null: false
     t.index ["teammate_id"], name: "index_teammate_links_on_teammate_id"
     t.index ["user_id"], name: "index_teammate_links_on_user_id"
