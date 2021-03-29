@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'categories/events'
+  get 'categories/reviews'
+  get 'categories/attendances'
+  get 'categories/users'
+  get 'categories/teammate_links'
   devise_for :users
   root to: 'pages#home'
   get "/user", to: "users#homepage", as: :user
