@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2021_03_29_102445) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "logo_link"
-    t.string "photo_link"
+    t.string "logo_link", default: "category/icon/default.svg"
+    t.string "photo_link", default: "category/image/default.jpg"
   end
 
   create_table "events", force: :cascade do |t|
