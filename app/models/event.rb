@@ -6,4 +6,7 @@ class Event < ApplicationRecord
   has_many :users, through: :attendances
   belongs_to :creator, class_name: :User
   belongs_to :category
+
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end
