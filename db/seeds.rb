@@ -31,7 +31,7 @@ c.save!
 puts "create an event"
 date = Time.now
 e = Event.new(
-  title:"test event",
+  title:"Foot outdoor 5 vs 5",
   address: "Lausanne",
   creator: u,
   content: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
