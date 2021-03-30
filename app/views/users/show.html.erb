@@ -1,0 +1,5 @@
+<% User.all.each do |user| %>
+<div class="m-1">
+<%= render "users/card_user", user:user %>
+</div>
+<% end %>

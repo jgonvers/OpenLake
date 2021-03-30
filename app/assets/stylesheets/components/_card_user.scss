@@ -1,0 +1,21 @@
+.card-user {
+  width: 350px;
+  height: 130px;
+  background-color: white;
+  padding: 5px;
+  h3 {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0;
+  }
+  p {
+    margin: 0;
+    font-size:12px;
+  }
+}
+
+.avatar-card-user {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
