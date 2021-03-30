@@ -1,19 +1,19 @@
 .avatar-creator {
-  width: 75px;
-  height: 75px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
-  margin: 5px;
+  margin-right: 15px;
 }
 
 .event-show-header {
   width: 350px;
-  padding: 5px;
   margin: 0;
   p {
-    font-size: 12px;
+    font-size: 13px;
   }
-  h2 {
+  h3 {
     margin-top: 10px;
+    width: 500px;
   }
   .flex-column {
     width: 200px;
@@ -26,8 +26,8 @@
 }
 
 .avatar-teammate {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
@@ -39,4 +39,25 @@
   width: 100px;
   height: 40px;
   font-size: 20px;
+}
+
+#date-and-time {
+  width: 250px;
+}
+
+#show-event-title {
+  text-align: left;
+  h3 {
+    font-size: 25px;
+    font-weight: bold;
+  }
+}
+
+#weather-forecast {
+  
+  h3 {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left;
+  }
 }
