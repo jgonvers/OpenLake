@@ -1,0 +1,42 @@
+.avatar-creator {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.event-show-header {
+  width: 350px;
+  padding: 5px;
+  margin: 0;
+  p {
+    font-size: 12px;
+  }
+  h2 {
+    margin-top: 10px;
+  }
+  .flex-column {
+    width: 200px;
+  }
+}
+
+.map-placeholder {
+  width: 350px;
+  height: 350px;
+}
+
+.avatar-teammate {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.button-event {
+  border-radius: 5px;
+  background-color: blue;
+  color: red;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+}
