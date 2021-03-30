@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_102445) do
+ActiveRecord::Schema.define(version: 2021_03_30_073644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_102445) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "logo_link", default: "category/icon/default.svg"
-    t.string "photo_link", default: "category/image/default.jpg"
+    t.string "logo_link", default: "category/default.svg"
   end
 
   create_table "events", force: :cascade do |t|
@@ -35,10 +34,11 @@ ActiveRecord::Schema.define(version: 2021_03_29_102445) do
     t.float "longitude"
     t.bigint "creator_id", null: false
     t.bigint "category_id", null: false
-    t.datetime "datetime"
     t.string "status", default: "pending"
     t.string "content"
     t.integer "participants_maximum", default: 2
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.index ["category_id"], name: "index_events_on_category_id"
     t.index ["creator_id"], name: "index_events_on_creator_id"
   end

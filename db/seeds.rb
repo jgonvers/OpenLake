@@ -12,6 +12,7 @@ puts "create 1 user user@email.com"
 u = User.new(
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
+  content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
   password: '1234567',
   password_confirmation: '1234567',
   email: "user@email.com",
@@ -21,17 +22,23 @@ u.save!
 
 puts "create a category"
 c = Category.new(
-  name: "test category"
+  name: "volleyball"
 )
 c.save!
 
+
+
 puts "create an event"
+date = Time.now
 e = Event.new(
-  title:"test event",
+  title:"Foot outdoor 5 vs 5",
   address: "Lausanne",
   creator: u,
+  content: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
   category: c,
-  participants_maximum: 200
+  start_time: date,
+  end_time: date + 3600,
+  participants_maximum: 20
 )
 e.save!
 
@@ -41,6 +48,7 @@ puts "create 10 user"
   un = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
+    content: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English.',
     password: '1234567',
     password_confirmation: '1234567',
     email: Faker::Internet.email,

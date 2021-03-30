@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  validates :title, :address, :start_time, :end_time, :status, :content, :participants_maximum, presence: true
+
   has_many :reviews
   has_many :attendances
   has_many :users, through: :attendances
