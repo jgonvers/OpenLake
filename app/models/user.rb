@@ -26,10 +26,6 @@ class User < ApplicationRecord
   end
 
   def distance_event(event)
-    long_event = event.longitude
-    lat_event = event.latitude
-    long_user = self.longitude
-    lat_user = self.latitude
-    return Math.hypot(long_event - long_user, lat_event - lat_user)
+    self.distance_to([event.latitude, event.longitude])
   end
 end
