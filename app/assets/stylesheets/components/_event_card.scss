@@ -1,7 +1,7 @@
 .card-container  {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 375px;
   height: 120px;
   border-top: 1px solid #eae8e8 ;
   border-bottom: 1px solid #eae8e8;
@@ -43,7 +43,14 @@
 }
 
 #event-title {
+  display: flex;
+  justify-content: space-between;
   font-size: 25px;
+
+  #fist_raised {
+    margin-top: 8px;
+  }
+
 }
 
 #event-creator {
