@@ -1,0 +1,27 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+  color: rgba(0,0,0,0.3);
+  background-color: orange;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 80px;
+  width: 375px;
+  overflow: hidden;
+  
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
