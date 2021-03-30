@@ -12,6 +12,7 @@ puts "create 1 user user@email.com"
 u = User.new(
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
+  content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
   password: '1234567',
   password_confirmation: '1234567',
   email: "user@email.com",
@@ -21,7 +22,7 @@ u.save!
 
 puts "create a category"
 c = Category.new(
-  name: "test category"
+  name: "volleyball"
 )
 c.save!
 
