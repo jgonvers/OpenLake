@@ -1,5 +1,7 @@
 <div class="navbar-index">
-  <%= image_tag("icons/filter") %>
+  <div class="navbar-avatar">
+    <%= link_to image_tag("avatar/obama"), user_path %>
+  </div>
   <div class="navbar-form">
     <%= form_tag events_path, method: :get do %>
       <%= text_field_tag :query,
@@ -8,9 +10,7 @@
         placeholder: "Find an event/T-Mate"  %>
       <% end %>
   </div>
-  <div class="navbar-avatar">
-    <%= link_to image_tag("avatar/obama"), user_path %>
-  </div>
+  <%= image_tag("icons/filter") %>
 </div>
 
 
