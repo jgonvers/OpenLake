@@ -21,4 +21,7 @@ class User < ApplicationRecord
 
     return "#{count} common T-Mates"
   end
+
+  def distance_event(event)
+  end
 end
