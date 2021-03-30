@@ -21,4 +21,5 @@ class User < ApplicationRecord
 
     return "#{count} common T-Mates"
   end
+
 end
