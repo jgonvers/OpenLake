@@ -10,7 +10,7 @@
     </div>
   </div>
   
-  <div id="map"
+  <div class= 'event-show-map' id="map"
      style="width: 350px; height: 250px;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -29,22 +29,21 @@
     <p>WEATHER TO INSERT</p>
   </div>
   <HR size=0 width=200px>
-    <% #if current_user != nil && current_user.teammates.count > 0 %>
+    <% if current_user != nil && current_user.teammates.count > 0 %>
       <h3>T-Mates</h3>
       <div>
-      <% #current_user.teammates.each do |teammate| %>
+      <% current_user.teammates.each do |teammate| %>
         <%= image_tag "avatar/default.png", class:"avatar-teammate" %>
-      <% #end %>
+      <% end %>
       </div>
-    <% #end %>
-  <HR size=50 width=200px>
-  <br>
+    <HR size=50 width=200px>
+    <% end %>
   <br>
   <div class="text-center">
-    <% #if current_user != nil && (@event.users.include? current_user || @event.creator == current_user) %>
+    <% if current_user != nil && (@event.users.include? current_user || @event.creator == current_user) %>
       <a href="#" class="text-center text-reset align-middle" id="btn-cancel">Cancel attendance!</a>
-    <% #else %>
+    <% else %>
       <a href="#" class="text-center text-reset align-middle" id="btn-attend">Attend this event!</a>
-    <% #end %>
+    <% end %>
   </div>
 </div>
