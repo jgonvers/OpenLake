@@ -1,3 +1,5 @@
-<% Event.all.each do |event|%>
+<% @events.each do |event| %>
+<div class="mb-1">
 <%= render 'events/card_event' , event:event %>
+</div>
 <% end %>
