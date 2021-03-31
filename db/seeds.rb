@@ -15,9 +15,15 @@ def teammate_create(user1, user2)
   end
 end
 
+avatar_folder = "./app/assets/images/seed/user/"
+
+image_extension = [".jpg", ".png", ".jpeg"]
+
 address_list = ["Lausanne", "Morges", "Renens", "Montreux", "Moudon", "Genève"]
 
 lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+avatars = Dir.entries(avatar_folder).select { |file| image_extension.include? File.extname(file) }
 
   category = {
     bowling: 'fa-bowling-ball',
@@ -42,6 +48,10 @@ u = User.new(
   address: "chemin de montolivet 35, 1006 Lausanne"
   )
 u.save!
+file = File.open(avatar_folder + avatars.sample)
+u.photo.attach(io: file, filename: "avatar-#{u.id}-#{Time.now}.jpg", content_type: 'image/jpg')
+
+exit(0)
 
 puts "create categories"
 category.each do |cat, val|
