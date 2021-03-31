@@ -9,7 +9,13 @@
       </div>
     </div>
   </div>
-  <div class="map-placeholder"></div>
+  
+  <div id="map"
+     style="width: 350px; height: 250px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
   <div>
     <h3><%= @event.title %></h3>
     <p class="text-justify"><%= @event.content %></p>
