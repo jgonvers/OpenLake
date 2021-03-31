@@ -1,16 +1,44 @@
+body {
+  background-color: white;
+}
 .create-main-container {
   margin: 10px 10px;
-  width: 375px;
+  width: 355px;
 }
 
 .create-main-container h6 {
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.categories {
-  font-size: 40px;
+.first-row-categories {
+  font-size: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-right: 12px;
+}
+
+.second-row-categories {
+  font-size: 50px;
+  display: flex;
+  justify-content: space-around;
+  margin-right: 12px;
+  margin-top: 20px;
+}
+
+.btn-submit-event {
+  margin-top: 10px;
+  border-radius: 6px;
+  background-color: #3581dd;
+  border-color: #2d6eb7;
+  color: white;
+  font-weight: 10px;
+  width: 170px;
+  height: 40px;
+  font-size: 20px;
+  box-shadow: 0 0 10px rgba(0,103,216,0.2);
+}
+
+.submit-button {
+  text-align: center;
 }
