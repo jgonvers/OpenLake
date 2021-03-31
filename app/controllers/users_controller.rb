@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def homepage
+    @users = User.all
   end
 
   def show
