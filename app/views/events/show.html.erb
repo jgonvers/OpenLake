@@ -10,11 +10,11 @@
     </div>
   </div>
   <div class="map-placeholder"></div>
-  <div id="show-event-title">
+  <div>
     <h3><%= @event.title %></h3>
     <p class="text-justify"><%= @event.content %></p>
   </div>
-  <hr>
+  <HR size=50 width=200px>
   <div id="weather-forecast">
     <h3>Weather Forecast</h3>
   </div>
@@ -22,21 +22,23 @@
     <p>WEATHER TO INSERT</p>
     <p>WEATHER TO INSERT</p>
   </div>
-  <hr>
-    <% if current_user != nil && current_user.teammates.count > 0 %>
-      <h2>T-Mates</h2>
+  <HR size=0 width=200px>
+    <% #if current_user != nil && current_user.teammates.count > 0 %>
+      <h3>T-Mates</h3>
       <div>
-      <% current_user.teammates.each do |teammate| %>
+      <% #current_user.teammates.each do |teammate| %>
         <%= image_tag "avatar/default.png", class:"avatar-teammate" %>
-      <% end %>
+      <% #end %>
       </div>
-      <hr>
-    <% end %>
-  <div class="button-event text-center">
-    <% if current_user != nil && (@event.users.include? current_user || @event.creator == current_user) %>
-      <a href="#" class="text-center text-reset align-middle">Cancel</a>
-    <% else %>
-      <a href="#" class="text-center text-reset align-middle">Attend!</a>
-    <% end %>
+    <% #end %>
+  <HR size=50 width=200px>
+  <br>
+  <br>
+  <div class="text-center">
+    <% #if current_user != nil && (@event.users.include? current_user || @event.creator == current_user) %>
+      <a href="#" class="text-center text-reset align-middle" id="btn-cancel">Cancel attendance!</a>
+    <% #else %>
+      <a href="#" class="text-center text-reset align-middle" id="btn-attend">Attend this event!</a>
+    <% #end %>
   </div>
 </div>

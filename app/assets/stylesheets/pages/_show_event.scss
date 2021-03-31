@@ -26,39 +26,25 @@
 }
 
 .avatar-teammate {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-}
-
-.button-event {
-  border-radius: 5px;
-  background-color: blue;
-  color: red;
-  font-weight: bold;
-  width: 100px;
-  height: 40px;
-  font-size: 20px;
 }
 
 #date-and-time {
   width: 250px;
 }
 
-#show-event-title {
+h3 {
   text-align: left;
-  h3 {
-    font-size: 25px;
-    font-weight: bold;
-  }
+  font-size: 25px;
+  font-weight: bold;
 }
 
-#weather-forecast {
-  
-  h3 {
-    font-size: 25px;
-    font-weight: bold;
-    text-align: left;
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
   }
 }
-
