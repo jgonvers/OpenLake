@@ -13,6 +13,14 @@
   </head>
 
   <body>
+    <% if true %>
+      <%= render 'events/navbar_index' %>
+    <% else %>
+      <%= render 'events/navbar_index' %>
+    <% end %>
+
     <%= yield %>
+
+    <%= render 'events/footer' %>
   </body>
 </html>

@@ -1,7 +1,3 @@
-<%= render 'events/navbar_index' %>
 <% Event.all.each do |event|%>
 <%= render 'events/card_event' , event:event %>
 <% end %>
-
-<%= render 'events/footer' %>
-
