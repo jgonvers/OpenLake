@@ -1,6 +1,7 @@
 <%= render 'events/navbar_index' %>
-
-<%= render 'events/card_event' , event:@events.first %>
+<% Event.all.each do |event|%>
+<%= render 'events/card_event' , event:event %>
+<% end %>
 
 <%= render 'events/footer' %>
 

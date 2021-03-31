@@ -15,7 +15,8 @@ def teammate_create(user1, user2)
   end
 end
 
-avatar_folder = "./app/assets/images/seed/user/"
+avatar_folder_m = "./app/assets/images/seed/user/male/"
+avatar_folder_f = "./app/assets/images/seed/user/female/"
 
 image_extension = [".jpg", ".png", ".jpeg"]
 
@@ -23,7 +24,8 @@ address_list = ["Lausanne", "Morges", "Renens", "Montreux", "Moudon", "Genève"]
 
 lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-avatars = Dir.entries(avatar_folder).select { |file| image_extension.include? File.extname(file) }
+avatars_m = Dir.entries(avatar_folder_m).select { |file| image_extension.include? File.extname(file) }
+avatars_f = Dir.entries(avatar_folder_f).select { |file| image_extension.include? File.extname(file) }
 
   category = {
     bowling: 'fa-bowling-ball',
@@ -33,13 +35,10 @@ avatars = Dir.entries(avatar_folder).select { |file| image_extension.include? Fi
     swimming: 'fa-swimmer',
     volleyball: 'fa-volleyball-ball'
   }
-  
-
-
 
 puts "create 1 user user@email.com"
 u = User.new(
-  first_name: Faker::Name.first_name,
+  first_name: Faker::Name.male_first_name,
   last_name: Faker::Name.last_name,
   content: lorem,
   password: '1234567',
@@ -48,7 +47,7 @@ u = User.new(
   address: "chemin de montolivet 35, 1006 Lausanne"
   )
 u.save!
-file = File.open(avatar_folder + avatars.sample)
+file = File.open(avatar_folder_m + avatars_m.sample)
 u.photo.attach(io: file, filename: "avatar-#{u.id}-#{Time.now}.jpg", content_type: 'image/jpg')
 
 
@@ -61,8 +60,9 @@ category.each do |cat, val|
 end
 
 puts "create 20 user"
-20.times do
-  fname = Faker::Name.first_name
+puts "10 males"
+10.times do
+  fname = Faker::Name.male_first_name
   lname = Faker::Name.last_name
   un = User.new(
     first_name: fname,
@@ -72,8 +72,28 @@ puts "create 20 user"
     password_confirmation: '1234567',
     email: "#{fname.downcase}.#{lname.downcase}@email.com",
     address: address_list.sample
-  ).save!
-  file = File.open(avatar_folder + avatars.sample)
+  )
+  un.save!
+  file = File.open(avatar_folder_m + avatars_m.sample)
+  un.photo.attach(io: file, filename: "avatar-#{u.id}-#{Time.now}.jpg", content_type: 'image/jpg')
+  puts "."
+end
+
+puts "10 females"
+10.times do
+  fname = Faker::Name.female_first_name
+  lname = Faker::Name.last_name
+  un = User.new(
+    first_name: fname,
+    last_name: lname,
+    content: lorem,
+    password: '1234567',
+    password_confirmation: '1234567',
+    email: "#{fname.downcase}.#{lname.downcase}@email.com",
+    address: address_list.sample
+  )
+  un.save!
+  file = File.open(avatar_folder_f + avatars_f.sample)
   un.photo.attach(io: file, filename: "avatar-#{u.id}-#{Time.now}.jpg", content_type: 'image/jpg')
   puts "."
 end
@@ -105,9 +125,9 @@ puts "add 10 attendant to event"
 end
 
 
-puts "create 5 other event with 5 attendant"
+puts "create 50 other event with 5 attendant"
 n=1
-5.times do
+50.times do
   c = Category.all.sample
   u = User.all.sample
   e = Event.new(
