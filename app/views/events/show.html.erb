@@ -1,6 +1,6 @@
 <div class="p-2 d-flex flex-column">
-  <div class="d-flex flex-row event-show-header">
-    <%= image_tag "avatar/default.png", class:"avatar-creator" %>
+  <div class="d-flex flex-row event-show-header ml-2">
+    <%= cl_image_tag @event.creator.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-creator" %>
     <div class="d-flex flex-column">
       <h3 class="namelast_name"><%= "#{@event.creator.first_name} #{@event.creator.last_name}" %></h3>
 
