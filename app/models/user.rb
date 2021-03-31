@@ -16,7 +16,9 @@ class User < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  def common_teammates
+  def common_teammates(current_user)
+    return "No common T-Mate" if current_user.nil?
+
     count = 0
     teammates.each do |teammate|
       count += 1 if current_user.teammates.include? teammate
