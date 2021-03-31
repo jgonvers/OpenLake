@@ -3,45 +3,46 @@
     <%= image_tag "avatar/default.png", class:"avatar-creator" %>
     <div class="d-flex flex-column">
       <h3><%= "#{@event.creator.first_name} #{@event.creator.last_name}" %></h2>
-      <div class="d-flex flex-row justify-content-between" id="date-and-time">
-        <p><i class="fas fa-calendar-alt"></i> <%= @event.start_time.strftime("%e %B, %Y") %></p>
-        <p><i class="far fa-clock"></i> <%= "#{@event.start_time.strftime("%k:%m")} to #{@event.end_time.strftime("%k:%m")}"%></p>
-      </div>
     </div>
   </div>
 
   <h3><%= @event.title %></h3>
+
+  <div class="d-flex flex-row justify-content-between" id="date-and-time">
+    <p><i class="fas fa-calendar-alt"></i> <%= @event.start_time.strftime("%e %B, %Y") %></p>
+    <p><i class="far fa-clock"></i> <%= "#{@event.start_time.strftime("%k:%m")} to #{@event.end_time.strftime("%k:%m")}"%></p>
+  </div>
+
   <div class="d-flex flex-row align-items" id="weather-fc">
     <!-- let this space blank -->
   </div>
 
-  <div id="map"
+  <div class="event-show-map" id="map"
      style="width: 350px; height: 250px;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 
   <div>
-    <p class="text-justify"><%= @event.content %></p>
+    <p class="text-justify event-content"><%= @event.content %></p>
   </div>
   <HR size=50 width=200px>
-    <% #if current_user != nil && current_user.teammates.count > 0 %>
+    <% if current_user != nil && current_user.teammates.count > 0 %>
       <h3>T-Mates</h3>
       <div>
-      <% #current_user.teammates.each do |teammate| %>
+      <% current_user.teammates.each do |teammate| %>
         <%= image_tag "avatar/default.png", class:"avatar-teammate" %>
-      <% #end %>
+      <% end %>
       </div>
-    <% #end %>
-  <HR size=50 width=200px>
-  <br>
+      <HR size=50 width=200px>
+    <% end %>
   <br>
   <div class="text-center">
-    <% #if current_user != nil && (@event.users.include? current_user || @event.creator == current_user) %>
+    <% if current_user != nil && (@event.users.include? current_user || @event.creator == current_user) %>
       <a href="#" class="text-center text-reset align-middle" id="btn-cancel">Cancel attendance!</a>
-    <% #else %>
+    <% else %>
       <a href="#" class="text-center text-reset align-middle" id="btn-attend">Attend this event!</a>
-    <% #end %>
+    <% end %>
   </div>
 </div>
 <%= content_tag :div, '', id: 'mycontainer', data: { address: @event.address, start_time: @event.start_time } %>
