@@ -15,25 +15,30 @@ def teammate_create(user1, user2)
   end
 end
 
+avatar_folder_m = "./app/assets/images/seed/user/male/"
+avatar_folder_f = "./app/assets/images/seed/user/female/"
+
+image_extension = [".jpg", ".png", ".jpeg"]
+
 address_list = ["Lausanne", "Morges", "Renens", "Montreux", "Moudon", "Genève"]
 
 lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
+avatars_m = Dir.entries(avatar_folder_m).select { |file| image_extension.include? File.extname(file) }
+avatars_f = Dir.entries(avatar_folder_f).select { |file| image_extension.include? File.extname(file) }
+
   category = {
-    bowling: '<i class="fas fa-bowling-ball" style="color: #ce4e4e; font-size: 15px;"></i>',
-    biking: '<i class="fas fa-biking" style="color: #32b53b; font-size: 15px;"></i>',
-    football: '<i class="fas fa-futbol" style="color: #735BBF; font-size: 15px;"></i>',
-    running: '<i class="fas fa-running" style="color: orange; font-size: 15px;"></i>',
-    swimming: '<i class="fas fa-swimmer" style="color: #59cdea; font-size: 15px;"></i>',
-    volleyball: '<i class="fas fa-volleyball-ball" style="color: #FFD700; font-size: 15px;"></i>'
+    bowling: 'fa-bowling-ball',
+    biking: 'fa-biking',
+    football: 'fa-futbol',
+    running: 'fa-running',
+    swimming: 'fa-swimmer',
+    volleyball: 'fa-volleyball-ball'
   }
-  
-
-
 
 puts "create 1 user user@email.com"
 u = User.new(
-  first_name: Faker::Name.first_name,
+  first_name: Faker::Name.male_first_name,
   last_name: Faker::Name.last_name,
   content: lorem,
   password: '1234567',
@@ -42,6 +47,9 @@ u = User.new(
   address: "chemin de montolivet 35, 1006 Lausanne"
   )
 u.save!
+file = File.open(avatar_folder_m + avatars_m.sample)
+u.photo.attach(io: file, filename: "avatar-#{u.id}-#{Time.now}.jpg", content_type: 'image/jpg')
+
 
 puts "create categories"
 category.each do |cat, val|
@@ -52,8 +60,9 @@ category.each do |cat, val|
 end
 
 puts "create 20 user"
-20.times do
-  fname = Faker::Name.first_name
+puts "10 males"
+10.times do
+  fname = Faker::Name.male_first_name
   lname = Faker::Name.last_name
   un = User.new(
     first_name: fname,
@@ -63,7 +72,29 @@ puts "create 20 user"
     password_confirmation: '1234567',
     email: "#{fname.downcase}.#{lname.downcase}@email.com",
     address: address_list.sample
-  ).save!
+  )
+  un.save!
+  file = File.open(avatar_folder_m + avatars_m.sample)
+  un.photo.attach(io: file, filename: "avatar-#{u.id}-#{Time.now}.jpg", content_type: 'image/jpg')
+  puts "."
+end
+
+puts "10 females"
+10.times do
+  fname = Faker::Name.female_first_name
+  lname = Faker::Name.last_name
+  un = User.new(
+    first_name: fname,
+    last_name: lname,
+    content: lorem,
+    password: '1234567',
+    password_confirmation: '1234567',
+    email: "#{fname.downcase}.#{lname.downcase}@email.com",
+    address: address_list.sample
+  )
+  un.save!
+  file = File.open(avatar_folder_f + avatars_f.sample)
+  un.photo.attach(io: file, filename: "avatar-#{u.id}-#{Time.now}.jpg", content_type: 'image/jpg')
   puts "."
 end
 
@@ -94,11 +125,11 @@ puts "add 10 attendant to event"
 end
 
 
-puts "create 5 other event with 5 attendant"
+puts "create 50 other event with 5 attendant"
 n=1
-5.times do
+50.times do
   c = Category.all.sample
-  u2 = User.all.sample
+  u = User.all.sample
   e = Event.new(
     title: "#{Faker::Adjective.positive} #{c.name.downcase}",
     address: address_list.sample,
@@ -138,5 +169,33 @@ puts "create 50 teammates links"
     u2 = User.all.sample
   end
   teammate_create(u, u2)
+  puts "."
+end
+
+puts "add 1 event par category to the second user with 5 attendant"
+
+u = User.second
+
+Category.all.each do |c|
+  e = Event.new(
+    title: "#{Faker::Adjective.positive} #{c.name.downcase}",
+    address: address_list.sample,
+    creator: u,
+    content: lorem,
+    category: c,
+    start_time: date + n*60*60*24,
+    end_time: date + 3600 + n*60*60*24,
+    participants_maximum: 20
+  )
+  e.save!
+  5.times do
+    u2 = User.all.sample
+    if u2 != u && !(e.users.include? u2)
+      Attendance.new(
+        user: u2,
+        event: e
+      ).save!
+    end
+  end
   puts "."
 end
