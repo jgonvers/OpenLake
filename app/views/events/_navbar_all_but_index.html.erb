@@ -1,7 +1,9 @@
 <div class="navbar-index">
-  <div class="navbar-avatar">
-    <%= link_to image_tag("avatar/obama"), user_path %>
-  </div>
+  <% if current_user.nil? %>
+    <%= image_tag "avatar/default.png", class:"navbar-avatar" %>
+  <% else %>
+    <%= cl_image_tag user.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"navbar-avatar" %>
+  <% end %>
   <div class="navbar-form-all-but-index">
     <%= form_tag events_path, method: :get do %>
       <%= text_field_tag :query,

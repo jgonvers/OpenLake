@@ -2,12 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 100px;
   color: rgba(0,0,0,0.3);
   background-color: orange;
-  position: absolute;
+  position: fixed;
   left: 0;
-  bottom: 0;
+  top: 612px;
   height: 55px;
   width: 375px;
   overflow: hidden;
@@ -19,7 +18,12 @@
   }
 }
 
-html {
+.footer-size {
+  height: 55px;
+  width: 375px;
+}
+
+body {
   position: relative;
   min-height: 100%;
 }
