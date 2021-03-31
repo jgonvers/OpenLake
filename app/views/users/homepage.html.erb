@@ -1,0 +1,5 @@
+<% @users.each do |user| %>
+<p><%= user.id %></p>
+<%= render "users/card_user", user:user %>
+
+<% end %>

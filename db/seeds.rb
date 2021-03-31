@@ -51,7 +51,6 @@ u.save!
 file = File.open(avatar_folder + avatars.sample)
 u.photo.attach(io: file, filename: "avatar-#{u.id}-#{Time.now}.jpg", content_type: 'image/jpg')
 
-exit(0)
 
 puts "create categories"
 category.each do |cat, val|
@@ -74,6 +73,8 @@ puts "create 20 user"
     email: "#{fname.downcase}.#{lname.downcase}@email.com",
     address: address_list.sample
   ).save!
+  file = File.open(avatar_folder + avatars.sample)
+  un.photo.attach(io: file, filename: "avatar-#{u.id}-#{Time.now}.jpg", content_type: 'image/jpg')
   puts "."
 end
 

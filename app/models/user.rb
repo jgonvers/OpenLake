@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :teammate_link
   has_many :teammates, through: :teammate_link
   has_many :created_events, foreign_key: :creator_id, class_name: :Event
+  has_one_attached :photo
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
