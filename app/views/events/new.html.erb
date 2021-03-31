@@ -1,0 +1,15 @@
+<%= render 'events/navbar_all_but_index' %>
+<div class="create-main-container">
+  <h3>Create Your Event</h3>
+
+  <h6><strong>Select a Category :</strong></h6>
+
+  <div class="categories">
+    <% Category.all.each do |category| %>
+      <i class="fas <%= category.logo_link %>"></i>
+    <% end %>
+  </div>
+
+  <h6><strong>Give a Title for your Category :</strong></h6>
+
+</div>
