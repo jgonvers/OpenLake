@@ -13,7 +13,6 @@
     align-items: center;
     margin: 0px 10px;
     margin-right: 15px  ;
-
   }
 }
 
@@ -27,6 +26,25 @@
 .card-global {
   display: flex;
   justify-content: left;
+  align-items: center;
+  i {
+    margin:0;
+    font-size: 90px;
+  }
+  .div-icon {
+    height: 90px;
+    width: 90px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .fa-biking {
+    font-size: 70px;
+  }
+
+  .fa-swimmer {
+    font-size: 60px;
+  }
 }
 
 .card-time {
@@ -56,6 +74,7 @@
 
 #event-creator {
   font-size: 15px;
+  color: #848383;
 }
 
 .card-elements {

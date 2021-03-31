@@ -1,6 +1,8 @@
   <div class="card-container">
     <div class="card-global">
-      <i class="fas fa-futbol" style="color: #735bbf; font-size: 90px"></i>
+      <div class="div-icon text-align-center align-middle d-flex align-items-center justify-content-center">
+        <i class="fas <%= event.category.logo_link %>"></i>
+      </div>
       <div class="card-info">
         <div id="event-title">
           <%= event.title %>
@@ -8,16 +10,24 @@
             <%= image_tag "icons/fist_raised.svg", alt: "fist", width: 25, height: 25, id: "fist_raised" %>
           <% end %>
         </div>
-        <div id="event-creator", style="color: #848383"><%= event.creator.first_name %> <%= event.creator.last_name %></div>
+        <div id="event-creator"><%= event.creator.first_name %> <%= event.creator.last_name %></div>
         <div class="card-time">
           <div class="card-elements">
             <%= image_tag "icons/clock.svg", alt: "icon-clock", width: 15, height: 15, id: "clock" %>
             <%= "16:00 - 17:15" %>
           </div>
-          <div class="card-distance">
-            <%= image_tag "icons/map_marker.svg", alt: "icon-pin", width: 15, height: 15, id: "marker" %>
-            <%= "2km" %>
-          </div>
+          <% unless current_user.nil? %>
+            <div class="card-distance">
+              <%= image_tag "icons/map_marker.svg", alt: "icon-pin", width: 15, height: 15, id: "marker" %>
+              <p><%= "#{current_user.distance_event(event)} km" %></p>
+            </div>
+          <% else %>
+            <div class="card-distance d-flex flex-row flex align-items-center text-align-center">
+              <%= image_tag "icons/map_marker.svg", alt: "icon-pin", width: 15, height: 15, id: "marker" %>
+              <p><%= "#{4} km" %></p>
+            </div>
+          <% end %>
+
         </div>
       </div>
     </div>
