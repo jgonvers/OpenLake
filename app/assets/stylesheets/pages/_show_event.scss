@@ -20,11 +20,6 @@
   }
 }
 
-.map-placeholder {
-  width: 350px;
-  height: 350px;
-}
-
 .avatar-teammate {
   width: 60px;
   height: 60px;
@@ -47,4 +42,9 @@ a {
   &:hover {
     text-decoration: none;
   }
+}
+
+.event-show-map {
+  margin: 10px auto;
+  margin-bottom: 20px;
 }
