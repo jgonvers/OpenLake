@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   get "/user", to: "users#homepage", as: :user
-
+  resources :tests, only: :index
   resources :events, except: :destroy do
     resources :reviews, only: [:new, :create]
   end

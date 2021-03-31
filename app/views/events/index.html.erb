@@ -1,0 +1,23 @@
+<div class="navbar-index">
+  <div class="navbar-avatar">
+    <%= link_to image_tag("avatar/obama"), user_path %>
+  </div>
+  <div class="navbar-form">
+    <%= form_tag events_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find an event/T-Mate"  %>
+      <% end %>
+  </div>
+  <%= image_tag("icons/filter") %>
+</div>
+
+
+
+<%= render 'events/card_event' , event:@events.first %>
+
+
+
+<%= render 'events/footer', event:@events.first %>
+

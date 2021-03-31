@@ -39,7 +39,7 @@ u = User.new(
   password: '1234567',
   password_confirmation: '1234567',
   email: "user@email.com",
-  address: address_list.sample
+  address: "chemin de montolivet 35, 1006 Lausanne"
   )
 u.save!
 
@@ -71,7 +71,7 @@ puts "create an event for user@email.com"
 date = Time.now
 e = Event.new(
   title:"Foot outdoor 5 vs 5",
-  address: "Lausanne",
+  address: "Morges",
   creator: u,
   content: lorem,
   category: Category.where(name:"football").first,
