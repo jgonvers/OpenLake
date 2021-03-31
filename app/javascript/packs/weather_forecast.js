@@ -22,5 +22,5 @@ const requestAPI = (cityValue, dateevent) => {
     });
 };
 
-console.log(requestAPI("lausanne", "Tue, 30 Mar 2021 13:31:15 UTC +00:00"));
-
+requestAPI(document.getElementById('mycontainer').dataset.address, document.getElementById('mycontainer').dataset.start_time)
+// console.log(requestAPI(`${('#mycontainer').data('address')}`, "Tue, 30 Mar 2021 13:31:15 UTC +00:00"));

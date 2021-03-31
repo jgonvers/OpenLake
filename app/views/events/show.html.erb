@@ -44,4 +44,5 @@
     <% #end %>
   </div>
 </div>
+<%= content_tag :div, '', id: 'mycontainer', data: { address: @event.address, start_time: @event.start_time } %>
 <%= javascript_pack_tag 'weather_forecast'%>
