@@ -1,5 +1,42 @@
-<% User.all.each do |user| %>
-<div class="m-1">
-<%= render "users/card_user", user:user %>
+<div>
+
+  <div class="d-flex flex-row justify-content-between align-items-center mb-3 p-3">
+    <div class="avatar-profile"></div>
+    <div class="d-flex flex-column align-items-center justify-content-center"><p class="font-weight-bold mb-0 profile-number"><%= @user.teammates.count %></p><p class="mb-0">T-Mates</p></div>
+    <div class="d-flex flex-column align-items-center justify-content-center"><p class="font-weight-bold mb-0 profile-number"><%= @user.events.count %></p><p class="mb-0">Attended</p></div>
+    <div class="d-flex flex-column align-items-center justify-content-center"><p class="font-weight-bold mb-0 profile-number"><%= @user.created_events.count %></p><p class="mb-0">Created</p></div>
+  </div>
+
+  <div class="d-flex flex-row justify-content-around align-items-center mb-3">
+    <h3 class="mb-0"><%= "#{@user.first_name} #{@user.last_name}" %></h3>
+    <% if current_user.nil? || current_user != @user %>
+      <%= render "users/button_teammate", user: @user %>
+    <% end %>
+  </div>
+  <p class="text-justify p-3"><%= @user.content %></p>
+
+  <hr>
+
+  <% if current_user.nil? || current_user != @user %>
+    <div class="d-flex flex-row justify-content-around align-items-center mb-3">
+      <h3 class="m-0">Events Created</h3>
+      <%= render "reviews/rating", rating: @rating %>
+    </div>
+    <div>
+      <% @user.created_events.each do |event| %>
+        <div class="mb-1">
+          <%= render "events/card_event", event:event %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+      <h3 class="m-0">Upcoming Events</h3>
+    <div>
+      <% @upcoming_events.each do |event| %>
+        <div class="mb-1">
+          <%= render "events/card_event", event:event %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
-<% end %>
