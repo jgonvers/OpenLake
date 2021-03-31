@@ -5,7 +5,8 @@ class User < ApplicationRecord
   validates :role, acceptance: { accept: ['admin', 'user'] }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :events, through: :attendance
+  has_many :attendances
+  has_many :events, through: :attendances
   has_many :reviews
   has_many :teammate_link
   has_many :teammates, through: :teammate_link
@@ -26,6 +27,6 @@ class User < ApplicationRecord
   end
 
   def distance_event(event)
-    self.distance_to([event.latitude, event.longitude])
+    distance_to([event.latitude, event.longitude])
   end
 end
