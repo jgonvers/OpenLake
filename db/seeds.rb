@@ -148,7 +148,7 @@ puts "add up to 3 teammates to user@email.com"
   while u2 == us
     u2 = user.sample
   end
-  usermate_create(us, u2)
+  teammate_create(us, u2)
   puts "."
 end
 
