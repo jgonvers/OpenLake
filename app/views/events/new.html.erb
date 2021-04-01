@@ -4,31 +4,13 @@
 
     <h6><strong>Select a Category :</strong></h6>
 
-
-
-<%= f.input :category,
-            as: :radio_buttons,
+<%= f.collection_radio_buttons( :category, @categories, :name, :logo_link,
             collection_wrapper_tag: 'div',
             collection_wrapper_class: 'category-wrapper',
             item_wrapper_class: 'category-item',
-            input_html: {class: 'category-selector'},
-            collection: Category.all %>
-
-
-
-
-  <div class="categories">
-      <div class="first-row-categories">
-        <i class="fas <%= Category.first.logo_link %>"></i>
-        <i class="fas <%= Category.second.logo_link %>"></i>
-        <i class="fas <%= Category.third.logo_link %>"></i>
-      </div>
-      <div class="second-row-categories">
-        <i class="fas <%= Category.fourth.logo_link %>"></i>
-        <i class="fas <%= Category.fifth.logo_link %>"></i>
-        <i class="fas <%= Category.last.logo_link %>"></i>
-      </div>
-    </div>
+            input_html: {class: 'category-selector'} ) do |category|
+            category.label { category.radio_button + "<i class='fas #{category.text}'></i>".html_safe } 
+            end %>
 
     <h6><strong>Event Title:</strong></h6>
       <%= f.input :title, label: false%>
