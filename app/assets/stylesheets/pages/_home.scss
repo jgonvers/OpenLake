@@ -13,6 +13,8 @@
   margin-left: 100px;
   padding-top: 65px;
   color: white;
+  animation-duration: 5s;
+  animation-name: slidein;
 }
 
 .buttons-home{
@@ -39,4 +41,17 @@
 
 #btn-signup{
   color: white;
+}
+
+
+@keyframes slidein {
+  from {
+    margin-left: 10%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }

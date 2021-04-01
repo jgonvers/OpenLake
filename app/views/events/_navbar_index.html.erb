@@ -3,7 +3,7 @@
   <%= image_tag "avatar/default.png", class:"navbar-avatar" %>
   <% else %>
     <a href="<%= logged_user_path %>">
-      <%= cl_image_tag current_user.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"navbar-avatar" %>
+      <%= cl_image_tag current_user.photo.key, crop: :crop, gravity: :face, id: "navbar-avatar" %>
     </a>
   <% end %>
   <div class="navbar-form-index">
@@ -13,6 +13,7 @@
         class: "form-control",
         placeholder: "Find an event/T-Mate"  %>
       <% end %>
-  </div>
-  <%= image_tag("icons/filter") %>
+
+  </div id= "filter-icon">
+    <%= image_tag("icons/filter") %>
 </div>
