@@ -10,11 +10,19 @@
             <%= image_tag "icons/fist_raised.svg", alt: "fist", width: 25, height: 25, id: "fist_raised" %>
           <% end %>
         </div>
+        
         <div id="event-creator"><%= event.creator.first_name %> <%= event.creator.last_name %></div>
-        <div class="card-time">
+        
           <div class="card-elements">
-            <%= image_tag "icons/clock.svg", alt: "icon-clock", width: 15, height: 15, id: "clock" %>
-            <%= "16:00 - 17:15" %>
+            <div>
+              <%= image_tag "icons/calendar.svg", alt: "calendar-clock", width: 15, height: 15, id: "calendar" %>
+              <%= event.start_time.strftime("%d/%m/%Y") %>
+            </div>
+            <div>
+              <%= image_tag "icons/clock.svg", alt: "icon-clock", width: 15, height: 15, id: "clock" %>
+              <%= event.start_time.strftime("%H:%M") %>-<%= event.end_time.strftime("%H:%M") %>
+            </div>
+            
           </div>
           <% unless current_user.nil? %>
             <div class="card-distance">
@@ -27,8 +35,7 @@
               <p><%= "#{4} km" %></p>
             </div>
           <% end %>
-
-        </div>
+      
       </div>
     </div>
   </div>
