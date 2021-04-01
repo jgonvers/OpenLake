@@ -5,7 +5,19 @@
     <h6><strong>Select a Category :</strong></h6>
 
 
-    <div class="categories">
+
+<%= f.input :category,
+            as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            input_html: {class: 'category-selector'},
+            collection: Category.all %>
+
+
+
+
+  <div class="categories">
       <div class="first-row-categories">
         <i class="fas <%= Category.first.logo_link %>"></i>
         <i class="fas <%= Category.second.logo_link %>"></i>
