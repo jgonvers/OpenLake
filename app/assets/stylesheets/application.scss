@@ -13,7 +13,14 @@
 @import "pages/index";
 
 body {
+  position: relative;
+  min-height: 100vh;
   p {
     margin: 0;
   }
+}
+
+hr {
+  width: 200px;
+  size: 50;
 }

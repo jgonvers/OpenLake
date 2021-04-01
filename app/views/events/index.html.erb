@@ -1,7 +1,7 @@
-<%= render 'events/navbar_index' %>
-<% Event.all.each do |event|%>
-<%= render 'events/card_event' , event:event %>
+<% @events.each do |event| %>
+<a class="text-reset" href="<%= event_path(event) %>">
+  <div class="mb-1">
+    <%= render 'events/card_event' , event:event %>
+  </div>
+</a>
 <% end %>
-
-<%= render 'events/footer' %>
-

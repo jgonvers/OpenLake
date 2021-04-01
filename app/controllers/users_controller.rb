@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
   def homepage
-    @users = User.all
+    redirect_to user_path(current_user)
   end
 
   def show
-    @user = User.find(params[:id])
+    if params[:id].nil?
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+    end
     rating = 0
     reviews_count = 0
     if current_user.nil? || current_user != @user
@@ -23,6 +27,10 @@ class UsersController < ApplicationController
       @upcoming_events = []
       @user.events.each { |event| @upcoming_events << event if event.start_time > Time.now }
     end
+  end
+
+  def index
+    @users = User.all
   end
 
   def teammates
