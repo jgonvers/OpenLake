@@ -24,7 +24,9 @@
     <div>
       <% @user.created_events.each do |event| %>
         <div class="mb-1">
+        <a href="<%= event_path(event) %>" class="text-reset">
           <%= render "events/card_event", event:event %>
+        </a>
         </div>
       <% end %>
     </div>
