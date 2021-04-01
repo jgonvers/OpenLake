@@ -19,7 +19,7 @@
           <% unless current_user.nil? %>
             <div class="card-distance">
               <%= image_tag "icons/map_marker.svg", alt: "icon-pin", width: 15, height: 15, id: "marker" %>
-              <p><%= "#{current_user.distance_event(event)} km" %></p>
+              <p><%= "#{current_user.distance_event(event).round(0)} km" %></p>
             </div>
           <% else %>
             <div class="card-distance d-flex flex-row flex align-items-center text-align-center">

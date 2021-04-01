@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :tests, only: :index
   resources :events, except: :destroy do
     resources :reviews, only: [:new, :create]
+    resources :attendances, only: [:create]
   end
   resources :users, only: [:show, :index] do
     member do
@@ -13,4 +14,5 @@ Rails.application.routes.draw do
       get :events_attended
     end
   end
+  
 end
