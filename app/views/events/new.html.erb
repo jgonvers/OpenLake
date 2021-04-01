@@ -4,7 +4,7 @@
 
     <h6><strong>Select a Category :</strong></h6>
 
-<%= f.collection_radio_buttons( :category, @categories, :name, :logo_link,
+<%= f.collection_radio_buttons( :category_id, @categories, :id, :logo_link,
             collection_wrapper_tag: 'div',
             collection_wrapper_class: 'category-wrapper',
             item_wrapper_class: 'category-item',
