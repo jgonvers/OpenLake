@@ -4,12 +4,12 @@
 
     <h6><strong>Select a Category :</strong></h6>
 
-<%= f.collection_radio_buttons( :category, @categories, :name, :logo_link,
+<%= f.collection_radio_buttons( :category_id, @categories, :id, :logo_link,
             collection_wrapper_tag: 'div',
             collection_wrapper_class: 'category-wrapper',
             item_wrapper_class: 'category-item',
             input_html: {class: 'category-selector'} ) do |category|
-            category.label { category.radio_button + "<i class='fas #{category.text}'></i>".html_safe } 
+            category.label { category.radio_button + "<i class='fas #{category.text}'></i>".html_safe }
             end %>
 
     <h6><strong>Event Title:</strong></h6>
@@ -31,7 +31,7 @@
       <%= f.input :end_time, as: :datetime, html5: true, label: false%>
 
     <div class="submit-button">
-      <%= f.submit "Create Event", class: 'btn-submit-event' %>
+      <%= f.submit "Create Event!", class: 'btn-submit-event' %>
     </div>
   <% end %>
 
