@@ -43,9 +43,9 @@
   <br>
   <div class="text-center">
     <% if current_user != nil && (@event.users.include? current_user || @event.creator == current_user) %>
-      <a href="" class="text-center text-reset align-middle" id="btn-cancel">Cancel attendance!</a>
+      <%= link_to 'Cancel attendance!', events_path, class: 'text-center text-reset align-middle', id: 'btn-cancel' %>
     <% else %>
-      <a href="#" class="text-center text-reset align-middle" id="btn-attend">Attend this event!</a>
+      <%= link_to 'Attend this event!', event_attendances_path(@event), method: :post, class: 'text-center text-reset align-middle', id: 'btn-attend'  %>
     <% end %>
   </div>
 </div>
