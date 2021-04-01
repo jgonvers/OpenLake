@@ -1,5 +1,7 @@
 <% @events.each do |event| %>
-<div class="mb-1">
-<%= render 'events/card_event' , event:event %>
-</div>
+<a class="text-reset" href="#">
+  <div class="mb-1">
+    <%= render 'events/card_event' , event:event %>
+  </div>
+</a>
 <% end %>

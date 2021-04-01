@@ -1,10 +1,16 @@
-<div class="card-user d-flex flex-row justify-content-between align-items-center">
-  <%= cl_image_tag user.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-card-user" %>
-  <div class="m-0 d-flex flex-column justify-content-between align-items-start" >
-    <h3><%= "#{user.first_name}" %></h3>
-    <p><%= user.common_teammates %><p>
-  </div>
-  <a href="#">
-   <%= render 'users/button_teammate', user:user %>
+<div class="card-user">
+  <a href="<%= users_path(user) %>"> 
+    <div class="d-flex flex-row justify-content-start align-items-center">
+      <%= cl_image_tag user.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-card-user" %>
+      <div class="m-0 ml-3 d-flex flex-column justify-content-between align-items-start" >
+        <h3><%= "#{user.first_name}" %></h3>
+        <p><%= user.common_teammates(current_user) %><p>
+      </div>
+    </div>
   </a>
+  <div class="button">
+    <a href="#">
+      <%= render 'users/button_teammate', user:user %>
+    </a>
+  </div>
 </div>

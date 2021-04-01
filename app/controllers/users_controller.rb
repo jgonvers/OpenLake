@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def homepage
-    @users = User.all
+    redirect_to user_path(current_user)
   end
 
   def show
@@ -23,6 +23,10 @@ class UsersController < ApplicationController
       @upcoming_events = []
       @user.events.each { |event| @upcoming_events << event if event.start_time > Time.now }
     end
+  end
+
+  def index
+    @users = User.all
   end
 
   def teammates
