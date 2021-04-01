@@ -32,4 +32,13 @@ class User < ApplicationRecord
   def distance_event(event)
     distance_to([event.latitude, event.longitude])
   end
+
+  def teammates_in_event?(event)
+    team = teammates
+    event.users.each { |user| return true if team.include? user }
+
+    return true if team.include? event.creator
+
+    return false
+  end
 end

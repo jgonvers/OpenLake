@@ -73,14 +73,14 @@ end
     volleyball: 'fa-volleyball-ball'
   }
 
-puts "create 1 user user@email.com"
+puts "create 1 user kilian@email.com"
 u = User.new(
-  first_name: Faker::Name.male_first_name,
+  first_name: "Kilian",
   last_name: Faker::Name.last_name,
   content: Lorem,
   password: '1234567',
   password_confirmation: '1234567',
-  email: "user@email.com",
+  email: "kilian@email.com",
   address: "chemin de montolivet 35, 1006 Lausanne"
   )
 u.save!
@@ -106,52 +106,31 @@ puts "create 20 user"
   puts "."
 end
 
-puts "create an event for user@email.com"
-u = User.first
+user = User.all
 date = Time.now
-e = Event.new(
-  title:"Foot outdoor 5 vs 5",
-  address: "Morges",
-  creator: u,
-  content: Lorem,
-  category: Category.where(name:"football").first,
-  start_time: date,
-  end_time: date + 3600,
-  participants_maximum: 20
-)
-e.save!
-
-puts "add 10 attendant to event"
-10.times do
-  u2 = User.all.sample
-  if u2 != u && !(e.users.include? u2)
-    Attendance.new(
-      user: u2,
-      event: e
-    ).save!
-  end
-  puts "."
-end
-
-
+us = User.first
+categories = Category.all
 puts "create 50 other event with 5 attendant"
 n=1
 50.times do
-  c = Category.all.sample
-  u = User.all.sample
+  c = categories.sample
+  u = us
+  while u == us
+    u = user.sample
+  end
   e = Event.new(
-    title: "#{Faker::Adjective.positive} #{c.name.downcase}",
+    title: "#{Faker::Adjective.positive} #{c.name.downcase}".titleize,
     address: Address_list.sample,
     creator: u,
     content: Lorem,
     category: c,
-    start_time: date + n*60*60*24,
-    end_time: date + 3600 + n*60*60*24,
-    participants_maximum: 20
+    start_time: date + n*60*60*24 - [1,2,3].sample * 3600,
+    end_time: date + n*60*60*24 + [1,2,3].sample * 3600,
+    participants_maximum: (5..25).to_a.sample
   )
   e.save!
   5.times do
-    u2 = User.all.sample
+    u2 = user.sample
     if u2 != u && !(e.users.include? u2)
       Attendance.new(
         user: u2,
@@ -163,50 +142,26 @@ n=1
   puts "."
 end
 
-puts "add up to 10 teammates to user@email.com"
-u = User.first
-10.times do 
-  u2 = User.all.sample
-  teammate_create(u, u2)
+puts "add up to 3 teammates to user@email.com"
+3.times do 
+  u2 = us
+  while u2 == us
+    u2 = user.sample
+  end
+  teammate_create(us, u2)
   puts "."
 end
 
-puts "create 50 teammates links"
-50.times do
-  u = User.all.sample
+puts "create 25 teammates links"
+25.times do
+  u = us
+  while u == us
+    u = user.sample
+  end
   u2 = u
-  while u == u2
-    u2 = User.all.sample
+  while u == u2 || u2 == us
+    u2 = user.sample
   end
   teammate_create(u, u2)
-  puts "."
-end
-
-puts "add 1 event par category to the second user with 5 attendant"
-
-u = User.second
-
-Category.all.each do |c|
-  e = Event.new(
-    title: "#{Faker::Adjective.positive} #{c.name.downcase}",
-    address: Address_list.sample,
-    creator: u,
-    content: Lorem,
-    category: c,
-    start_time: date + n*60*60*24,
-    end_time: date + 3600 + n*60*60*24,
-    participants_maximum: 20
-  )
-  e.save!
-  5.times do
-    u2 = User.all.sample
-    if u2 != u && !(e.users.include? u2)
-      Attendance.new(
-        user: u2,
-        event: e
-      ).save!
-    end
-  end
-  n += 1
   puts "."
 end

@@ -6,7 +6,7 @@
       <div class="card-info">
         <div id="event-title">
           <%= event.title %>
-          <% if current_user != nil && current_user.teammates.count > 0 %>
+          <% if current_user != nil && current_user.teammates_in_event?(event) %>
             <%= image_tag "icons/fist_raised.svg", alt: "fist", width: 25, height: 25, id: "fist_raised" %>
           <% end %>
         </div>
