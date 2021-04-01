@@ -15,13 +15,15 @@ def teammate_create(user1, user2)
   end
 end
 
+address = []
+File.foreach("./db/address.txt") { |line| address << line.strip }
 
 Avatar_folder_m = "./app/assets/images/seed/user/male/"
 Avatar_folder_f = "./app/assets/images/seed/user/female/"
 
 Image_extension = [".jpg", ".png", ".jpeg"]
 
-Address_list = ["Lausanne", "Morges", "Renens", "Montreux", "Moudon", "Genève"]
+Address_list = address
 
 Lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
@@ -157,6 +159,7 @@ n=1
       ).save!
     end
   end
+  n += 1
   puts "."
 end
 
@@ -204,5 +207,6 @@ Category.all.each do |c|
       ).save!
     end
   end
+  n += 1
   puts "."
 end
