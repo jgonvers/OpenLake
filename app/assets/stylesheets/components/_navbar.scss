@@ -3,21 +3,27 @@
   align-items: center;
   justify-content: space-around;
   width: 375px;
-  background-color: white;
+  height: 65px;
+  background-color: #4867AA;
   border-bottom: 1px solid #dddddd;
   margin-bottom: 5px;
+  position: sticky;
+  top: 0px;
+  z-index: 5;
+
     img {
-      width: 30px;
-      height: 30px; 
+      width: 40px;
+      height: 40px; 
   }
 }
 
-.navbar-avatar {
-    width: 45px;
-    height: 45px;
+#navbar-avatar {
     border-radius: 50%;
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 2px;
+    width: 45px;
+    height: 45px;
 
 }
 
@@ -26,5 +32,6 @@
 }
 
 .navbar-form-all-but-index {
-  width: 300px;
+  width: 290px;
+  margin-right: 5px;
 }
