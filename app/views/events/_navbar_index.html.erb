@@ -2,7 +2,9 @@
   <% if current_user.nil? %>
   <%= image_tag "avatar/default.png", class:"navbar-avatar" %>
   <% else %>
+    <a href="<%= logged_user_path %>">
     <%= cl_image_tag current_user.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"navbar-avatar" %>
+    </a>
   <% end %>
   <div class="navbar-form-index">
     <%= form_tag events_path, method: :get do %>
