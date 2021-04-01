@@ -1,10 +1,13 @@
 <% if current_user == nil || current_user.teammates.include?(user) || current_user == user %>
-  <div class="button-teammate d-flex flex-row justify-content-center align-items-center fist">
-    <i class="fas fa-fist-raised mr-2"></i>
-    <p>T-Mate !</p>
+  <a href="#">
+    <div class="button-teammate d-flex flex-row justify-content-center align-items-center fist">
+      <i class="fas fa-fist-raised mr-2"></i>
+      <p>T-Mate !</p>
+    </div>
+  </a>
 <% else %>
   <div class="button-teammate d-flex flex-row justify-content-around align-items-center fist check">
     <i class="fas fa-check mr-2"></i>
     <p>T-Mate</p>
+  </div>
 <% end %>
-</div>
