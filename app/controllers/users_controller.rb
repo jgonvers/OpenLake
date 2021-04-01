@@ -18,7 +18,7 @@ class UsersController < ApplicationController
           rating += reviews.rating
         end
       end
-      if reviews_count = 0
+      if reviews_count.zero?
         @rating = 4
       else
         @rating = rating.fdiv(reviews_count).round(0).to_i
