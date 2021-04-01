@@ -1,0 +1,56 @@
+<div class="create-main-container">
+  <h2>Create Your Event</h2>
+  <%= simple_form_for @event do |f| %>
+
+    <h6><strong>Select a Category :</strong></h6>
+
+
+
+<%= f.input :category,
+            as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            input_html: {class: 'category-selector'},
+            collection: Category.all %>
+
+
+
+
+  <div class="categories">
+      <div class="first-row-categories">
+        <i class="fas <%= Category.first.logo_link %>"></i>
+        <i class="fas <%= Category.second.logo_link %>"></i>
+        <i class="fas <%= Category.third.logo_link %>"></i>
+      </div>
+      <div class="second-row-categories">
+        <i class="fas <%= Category.fourth.logo_link %>"></i>
+        <i class="fas <%= Category.fifth.logo_link %>"></i>
+        <i class="fas <%= Category.last.logo_link %>"></i>
+      </div>
+    </div>
+
+    <h6><strong>Event Title:</strong></h6>
+      <%= f.input :title, label: false%>
+
+    <h6><strong>Event Description:</strong></h6>
+      <%= f.input :content, label: false%>
+
+    <h6><strong>Event Location:</strong></h6>
+      <%= f.input :address, label: false%>
+
+    <h6><strong>Max Number of Participants:</strong></h6>
+      <%= f.input :participants_maximum, label: false %>
+
+    <h6><strong>Event Starts:</strong></h6>
+      <%= f.input :start_time, as: :datetime, html5: true, label: false%>
+
+    <h6><strong>Event Ends: </strong></h6>
+      <%= f.input :end_time, as: :datetime, html5: true, label: false%>
+
+    <div class="submit-button">
+      <%= f.submit "Create Event", class: 'btn-submit-event' %>
+    </div>
+  <% end %>
+
+</div>

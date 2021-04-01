@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_113848) do
+ActiveRecord::Schema.define(version: 2021_03_31_152524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 2021_03_31_113848) do
     t.bigint "creator_id", null: false
     t.bigint "category_id", null: false
     t.string "status", default: "pending"
-    t.string "content"
-    t.integer "participants_maximum", default: 2
+    t.text "content"
+    t.integer "participants_maximum"
     t.datetime "start_time"
     t.datetime "end_time"
     t.index ["category_id"], name: "index_events_on_category_id"
