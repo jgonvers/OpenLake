@@ -1,5 +1,8 @@
 
 const divDisplay = document.querySelector('#weather-fc');
+const a = document.getElementById('mycontainer').dataset.address; // address
+const b = a.split(" ")[a.split(" ").length - 1]; // last word of address
+
 
 
 const requestAPI = (cityValue, dateevent) => {
@@ -22,5 +25,5 @@ const requestAPI = (cityValue, dateevent) => {
     });
 };
 
-requestAPI(document.getElementById('mycontainer').dataset.address, document.getElementById('mycontainer').dataset.start_time)
+requestAPI(b, document.getElementById('mycontainer').dataset.start_time)
 // console.log(requestAPI(`${('#mycontainer').data('address')}`, "Tue, 30 Mar 2021 13:31:15 UTC +00:00"));
