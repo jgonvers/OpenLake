@@ -30,13 +30,13 @@
     <p class="text-justify event-content"><%= @event.content %></p>
   </div>
   <hr>
-    <% if current_user != nil && current_user.teammates.count > 0 %>
+    <% if current_user != nil && current_user.teammates_in_event?(@event) %>
       <h3>T-Mates</h3>
       <div class="d-flex flex-row flex-wrap justify-content-center">
-      <% current_user.teammates.each do |teammate| %>
-        <a href="<%= user_path(teammate) %>">
+      <% current_user.teammates_in_event(@event).each do |teammate| %>
+        <%= link_to  user_path(teammate) do %>
           <%= cl_image_tag teammate.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-teammate m-2" %>
-        </a>
+        <% end %> 
       <% end %>
       </div>
       <hr>
