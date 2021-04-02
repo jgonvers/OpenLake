@@ -1,8 +1,8 @@
-<% if current_user == nil || current_user.teammates.include?(user) || current_user == user %>
+<% if current_user == nil || !current_user.teammates.include?(user) || current_user == user %>
   <a href="#">
     <div class="button-teammate d-flex flex-row justify-content-center align-items-center fist">
       <i class="fas fa-fist-raised mr-2"></i>
-      <p>T-Mate !</p>
+      <p>T-Mate!</p>
     </div>
   </a>
 <% else %>
