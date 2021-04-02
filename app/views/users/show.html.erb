@@ -20,9 +20,9 @@
   </div>
   <p class="text-justify p-3"><%= @user.content %></p>
 
-  <hr>
 
-  <% if current_user.nil? || current_user != @user %>
+  <% if (current_user.nil? || current_user != @user) && !@past_events.count.zero? %>
+    <hr>
     <div class="d-flex flex-row justify-content-around align-items-center mb-3">
         <h3 class="m-0">Events Created</h3>
         <% unless @rating.negative? %>
@@ -38,8 +38,9 @@
           </div>
       </div>
     <% end %>
-  <% else %>
-      <h3 class="mb-3">Upcoming Events</h3>
+  <% elsif !@upcoming_events.nil? %>
+    <hr>
+      <h3 class="m-0">Upcoming Events</h3>
     <div>
       <% @upcoming_events.each do |event| %>
         <div class="mb-1">

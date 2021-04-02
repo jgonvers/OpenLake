@@ -6,11 +6,11 @@
   background-color: #4867AA;
   position: fixed;
   left: 0;
-  top: 612px;
+  top: calc(100vh - 55px);
   height: 55px;
   width: 375px;
   overflow: hidden;
-  
+
 
   img {
     width: 40px;
