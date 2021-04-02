@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   # before_filter :authenticate_user!
   def index
     @events = []
-    Event.all.each { |e| @events << e }
+    date = Time.now
+    Event.all.each { |e| @events << e if e.start_time >= date }
     @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
     render layout: 'layout_index'
   end
@@ -41,6 +42,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:category_id, :title, :content, :address, :participants_maximum, :start_time, :end_time)
+    params.require(:event).permit(:category_id, :title, :content, :address, :participants_maximum, :start_time,
+                                  :end_time)
   end
 end
