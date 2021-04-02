@@ -114,20 +114,28 @@ category.each do |cat, val|
   ).save!
 end
 
-puts "create 20 user"
-20.times do
-  if ["f","m"].sample == "f"
-    create_female(avatars_f)
-  else
-    create_male(avatars_m)
-  end
+puts "create male user"
+until avatars_m.count.zero?
+  create_male(avatars_m)
+  puts "."
+end
+
+puts "create female user"
+until avatars_f.count.zero?
+  create_female(avatars_f)
   puts "."
 end
 
 
+user = User.all
+date = Time.now - 10 * 3600 * 24
+us = User.first
+us2 = User.second
+categories = Category.all
+
 puts "create 5 event by maxime"
 n=1
-50.times do
+5.times do
   c = categories.sample
   u = us2
   e = Event.new(
@@ -142,7 +150,10 @@ n=1
   )
   e.save!
   5.times do
-    u2 = user.sample
+    u2 = us
+    while u2 == us || u2 == us2 
+      u2 = user.sample
+    end
     if u2 != u && !(e.users.include? u2)
       Attendance.new(
         user: u2,
@@ -154,13 +165,7 @@ n=1
   puts "."
 end
 
-user = User.all
-date = Time.now - 10 * 3600 * 24
-us = User.first
-us2 = User.second
-categories = Category.all
 puts "create 50 other event with 5 attendant"
-n=1
 50.times do
   c = categories.sample
   u = us
