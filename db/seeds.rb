@@ -95,7 +95,7 @@ u.photo.attach(io: file, filename: "avatar-#{u.id}.jpg", content_type: 'image/jp
 puts "create 1 user maxime@email.com"
 u = User.new(
   first_name: "Maxime",
-  last_name: Faker::Name.last_name,
+  last_name: "Jost",
   content: "My name is Maxime, I am lonely and have no friends. That's probably because my shower hasn't been working in 5 years. I hope this app will allow me to meet nice people.",
   password: '1234567',
   password_confirmation: '1234567',
