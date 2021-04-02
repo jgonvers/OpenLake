@@ -40,5 +40,7 @@ class UsersController < ApplicationController
   end
 
   def events_attended
+    @events = User.find(params[:id]).events
+    render "events/index"
   end
 end
