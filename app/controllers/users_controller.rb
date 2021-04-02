@@ -5,13 +5,17 @@ class UsersController < ApplicationController
 
   def show
     if params[:id].nil?
+      authenticate_user!
       @user = current_user
     else
       @user = User.find(params[:id])
     end
     rating = 0
     reviews_count = 0
-    if current_user.nil? || current_user != @user
+    if current_user == @user
+      @upcoming_events = []
+      @user.events.each { |event| @upcoming_events << event if event.start_time > Time.now }
+    else
       @user.created_events.each do |event|
         event.reviews.each do |reviews|
           reviews_count += 1
@@ -23,9 +27,6 @@ class UsersController < ApplicationController
       else
         @rating = rating.fdiv(reviews_count).round(0).to_i
       end
-    else
-      @upcoming_events = []
-      @user.events.each { |event| @upcoming_events << event if event.start_time > Time.now }
     end
   end
 
@@ -34,11 +35,18 @@ class UsersController < ApplicationController
   end
 
   def teammates
+    @user = User.find(params[:id]) # user ID
+    @users = @user.teammates # array of teammates of @user
+    render 'users/index'
   end
 
   def events_created
+    @events = User.find(params[:id]).created_events
+    render "events/index"
   end
 
   def events_attended
+    @events = User.find(params[:id]).events
+    render "events/index"
   end
 end

@@ -1,13 +1,15 @@
 <div>
   <div class="d-flex flex-row justify-content-between align-items-center mb-3 p-3">
     <%= cl_image_tag @user.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-profile" %>
-    <div class="d-flex flex-column align-items-center justify-content-center"><p class="font-weight-bold mb-0 profile-number"><%= @user.teammates.count %></p><p class="mb-0">T-Mates</p></div>
+    <%= link_to  teammates_user_path(@user), class: "text-reset" do %>
+      <div class="d-flex flex-column align-items-center justify-content-center"><p class="font-weight-bold mb-0 profile-number"><%= @user.teammates.count %></p><p class="mb-0">T-Mates</p></div>
+    <% end %>
     <%= link_to events_attended_user_path(@user), class:"text-reset" do %>
       <div class="d-flex flex-column align-items-center justify-content-center"><p class="font-weight-bold mb-0 profile-number"><%= @user.events.count %></p><p class="mb-0">Attended</p></div>
     <% end %>
     <%= link_to events_created_user_path(@user), class:"text-reset" do %>
       <div class="d-flex flex-column align-items-center justify-content-center"><p class="font-weight-bold mb-0 profile-number"><%= @user.created_events.count %></p><p class="mb-0">Created</p></div>
-    <% end %>
+    <% end %>   
   </div>
 
   <div class="d-flex flex-row justify-content-around align-items-center mb-3">

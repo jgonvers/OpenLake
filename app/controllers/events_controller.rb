@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   def index
     @events = []
     Event.all.each { |e| @events << e }
-    @events = @events.sort
+    @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
     render layout: 'layout_index'
   end
 
