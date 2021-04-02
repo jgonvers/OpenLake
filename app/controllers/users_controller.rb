@@ -37,6 +37,8 @@ class UsersController < ApplicationController
   end
 
   def events_created
+    @events = User.find(params[:id]).created_events
+    render "events/index"
   end
 
   def events_attended
