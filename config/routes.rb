@@ -14,5 +14,4 @@ Rails.application.routes.draw do
       get :events_attended
     end
   end
-  
 end

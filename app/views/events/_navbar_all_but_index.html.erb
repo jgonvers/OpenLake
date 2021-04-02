@@ -1,6 +1,8 @@
 <div class="navbar-index">
   <% if current_user.nil? %>
-    <%= image_tag "avatar/default.png", class:"navbar-avatar" %>
+    <a href="<%= new_user_session_path %>">
+      <%= image_tag "avatar/default.png", class:"navbar-avatar" %>
+    </a>
   <% else %>
     <a href="<%= logged_user_path %>">
       <%= cl_image_tag current_user.photo.key, crop: :crop, gravity: :face, id: "navbar-avatar" %>
@@ -14,4 +16,7 @@
         placeholder: "Find an event/T-Mate"  %>
       <% end %>
   </div>
+  <%= link_to destroy_user_session_path, method: :delete do %>
+    <i class="fas fa-sign-out-alt"></i>
+  <% end %>
 </div>
