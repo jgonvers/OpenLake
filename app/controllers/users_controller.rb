@@ -16,14 +16,16 @@ class UsersController < ApplicationController
       @upcoming_events = []
       @user.events.each { |event| @upcoming_events << event if event.start_time > Time.now }
     else
-      @user.created_events.each do |event|
+      @past_events = []
+      @user.created_events.each { |event| @past_events << event if event.end_time < Time.now }
+      @past_events.each do |event|
         event.reviews.each do |reviews|
           reviews_count += 1
           rating += reviews.rating
         end
       end
       if reviews_count.zero?
-        @rating = 4
+        @rating = -1
       else
         @rating = rating.fdiv(reviews_count).round(0).to_i
       end
