@@ -24,18 +24,20 @@
 
   <% if current_user.nil? || current_user != @user %>
     <div class="d-flex flex-row justify-content-around align-items-center mb-3">
-      <h3 class="m-0">Events Created</h3>
-      <%= render "reviews/rating", rating: @rating %>
-    </div>
-    <div>
-      <% @user.created_events.each do |event| %>
-        <div class="mb-1">
-        <a href="<%= event_path(event) %>" class="text-reset">
-          <%= render "events/card_event", event:event %>
-        </a>
-        </div>
-      <% end %>
-    </div>
+        <h3 class="m-0">Events Created</h3>
+        <%= render "reviews/rating", rating: @rating %>
+      </div>
+    <% @user.created_events.each do |event| %>
+      <div>
+        <% if event.end_time <= Time.now %>
+            <div class="mb-1">
+              <a href="<%= event_path(event) %>" class="text-reset">
+                <%= render "events/card_event", event:event %>
+              </a>
+            </div>
+        <% end %>
+      </div>
+    <% end %>
   <% else %>
       <h3 class="m-0">Upcoming Events</h3>
     <div>
