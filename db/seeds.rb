@@ -27,10 +27,10 @@ Address_list = address
 
 Lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-Avatars_m = Dir.entries(Avatar_folder_m).select { |file| Image_extension.include? File.extname(file) }
-Avatars_f = Dir.entries(Avatar_folder_f).select { |file| Image_extension.include? File.extname(file) }
+avatars_m = Dir.entries(Avatar_folder_m).select { |file| Image_extension.include? File.extname(file) }
+avatars_f = Dir.entries(Avatar_folder_f).select { |file| Image_extension.include? File.extname(file) }
 
-def create_male
+def create_male(image_list)
   fname = Faker::Name.male_first_name
   lname = Faker::Name.last_name
   un = User.new(
@@ -43,11 +43,13 @@ def create_male
     address: Address_list.sample
   )
   un.save!
-  file = File.open(Avatar_folder_m + Avatars_m.sample)
+  image = image_list.sample
+  image_list.delete!(image)
+  file = File.open(Avatar_folder_m + image)
   un.photo.attach(io: file, filename: "avatar-#{un.id}.jpg", content_type: 'image/jpg')
 end
 
-def create_female
+def create_female(image_list)
   fname = Faker::Name.female_first_name
   lname = Faker::Name.last_name
   un = User.new(
@@ -60,7 +62,9 @@ def create_female
     address: Address_list.sample
   )
   un.save!
-  file = File.open(Avatar_folder_f + Avatars_f.sample)
+  image = image_list.sample
+  image_list.delete!(image)
+  file = File.open(Avatar_folder_f + image)
   un.photo.attach(io: file, filename: "avatar-#{un.id}.jpg", content_type: 'image/jpg')
 end
 
@@ -84,7 +88,7 @@ u = User.new(
   address: "chemin de montolivet 35, 1006 Lausanne"
   )
 u.save!
-file = File.open(Avatar_folder_m + Avatars_m.sample)
+file = File.open(Avatar_folder_m + avatars_m.sample)
 u.photo.attach(io: file, filename: "avatar-#{u.id}.jpg", content_type: 'image/jpg')
 
 
@@ -99,9 +103,9 @@ end
 puts "create 20 user"
 20.times do
   if ["f","m"].sample == "f"
-    create_female
+    create_female(avatars_m)
   else
-    create_male
+    create_male(avatars_f)
   end
   puts "."
 end
