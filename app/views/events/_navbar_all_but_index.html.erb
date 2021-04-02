@@ -1,12 +1,8 @@
 <div class="navbar-index">
   <% if current_user.nil? %>
-    <a href="<%= new_user_session_path %>">
-      <%= image_tag "avatar/default.png", class:"navbar-avatar" %>
-    </a>
+  <%= image_tag "icons/back_arrow.svg", class:"navbar-avatar" %>
   <% else %>
-    <a href="<%= logged_user_path %>">
-      <%= cl_image_tag current_user.photo.key, crop: :crop, gravity: :face, id: "navbar-avatar" %>
-    </a>
+    <%= link_to image_tag("icons/back_arrow.svg"), events_path %>
   <% end %>
   <div class="navbar-form-all-but-index">
     <%= form_tag events_path, method: :get do %>
