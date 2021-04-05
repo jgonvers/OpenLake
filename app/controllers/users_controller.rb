@@ -34,7 +34,6 @@ class UsersController < ApplicationController
 
   def index
     if params[:query].present?
-      puts "coucou"
       sql_query = "first_name ILIKE :query OR last_name ILIKE :query"
       @users = User.where(sql_query, query: "%#{params[:query]}%")
     else
