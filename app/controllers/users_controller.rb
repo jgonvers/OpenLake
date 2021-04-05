@@ -39,6 +39,7 @@ class UsersController < ApplicationController
     else
       @users = User.all
     end
+    @users = @users.reject { |user| user == current_user }
   end
 
   def teammates
