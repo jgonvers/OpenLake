@@ -1,23 +1,25 @@
 #btn-attend {
   border-radius: 5px;
-  background-color: #78d381;
+  background-color: white;
   color: white;
   font-weight: bold;
   padding: 10px 15px;
   width: 100px;
   height: 40px;
   font-size: 20px;
+  border: $primary-color 1px solid;
   box-shadow: 0 0 8px rgba(0,0,0,0.3);
 }
 
 #btn-cancel {
   border-radius: 5px;
-  background-color: #ea6264;
+  background-color: white;
   color: white;
   font-weight: bold;
   padding: 7px 13px;
   width: 100px;
   height: 40px;
   font-size: 20px;
+  border: $primary-color 1px solid;
   box-shadow: 0 0 8px rgba(0,0,0,0.3);
 }

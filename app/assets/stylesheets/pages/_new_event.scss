@@ -15,14 +15,14 @@ body {
   margin-top: 10px;
   margin-bottom: 5px;
   border-radius: 5px;
-  background-color: #78d381;
+  background-color: white;
   color: black;
   width: 170px;
   height: 40px;
   font-weight: bold;
   font-size: 20px;
-  border-color: #78d381;
   border-width: 0px;
+  border: $primary-color 1px solid;
   box-shadow: 0 0 8px rgba(0,0,0,0.3);
 }
 
