@@ -13,5 +13,6 @@ Rails.application.routes.draw do
       get :events_created
       get :events_attended
     end
+    resources :teammate_links, only [:create, :destroy, :update]
   end
 end
