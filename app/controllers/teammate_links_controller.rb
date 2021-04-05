@@ -17,8 +17,8 @@ class TeammateLinksController < ApplicationController
           #problem saving
           return
         end
-      elsif status == "declined"
-        # link refused from other side
+      elsif status == "blocked"
+        # link blocked from other side
         return
       else
         # link accepted from otherside and link not existing on this side
@@ -43,6 +43,12 @@ class TeammateLinksController < ApplicationController
         return
       end
     end
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private

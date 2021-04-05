@@ -13,6 +13,6 @@ Rails.application.routes.draw do
       get :events_created
       get :events_attended
     end
-    resources :teammate_links, only [:create, :destroy, :update]
   end
+  post "/users/:user_id/:status", to: "teammate_links#create", as: :create_teammate_link
 end
