@@ -15,7 +15,16 @@
         class: "form-control",
         placeholder: "Find an event/T-Mate"  %>
       <% end %>
-  </div class='filter-icon'>
-    <%= image_tag("icons/filter.svg") %>
   </div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Filters
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button">Date</button>
+        <button class="dropdown-item" type="button">Distance</button>
+        <button class="dropdown-item" type="button">Teammate</button>
+        <button class="dropdown-item" type="button">Categories</button>
+      </div>
+    </div>
 </div>

@@ -33,9 +33,25 @@
 }
 
 .navbar-form-index {
-  width: 240px;
+  width: 200px;
 }
 
 .navbar-form-all-but-index {
   width: 260px;
+}
+
+#dropdownMenu2 {
+  width: 85px;
+}
+
+.dropdown-menu {
+  background-color: red;
+  min-width: 5px;
+  width: 90px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.dropdown-item {
+  padding-left: 8px;
 }
