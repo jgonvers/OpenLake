@@ -32,8 +32,22 @@ class UsersController < ApplicationController
     end
   end
 
+  # def index
+  #   if params[:query].present?
+  #     puts "coucou"
+  #     sql_query = "first_name ILIKE :query OR last_name ILIKE :query"
+  #     @users = User.where(sql_query, query: "%#{params[:query]}%")
+  #   else
+  #     @users = User.all
+  #   end
+  # end
+
   def index
-    @users = User.all
+    if !User.search_by_first_name_and_by_last_name(params[:query]).empty?
+      @users = User.search_by_first_name_and_by_last_name(params[:query])
+    else
+      @users = User.all
+    end
   end
 
   def teammates

@@ -16,6 +16,13 @@ class User < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
+  include PgSearch::Model
+  pg_search_scope :search_by_first_name_and_by_last_name,
+    against: [ :first_name, :last_name],
+    using: {
+      tsearch: { prefix: true } # typing "maxime jo" will return "maxime jost"
+    }
+  
   def common_teammates(current_user)
     return "No common T-Mate" if current_user.nil?
 
