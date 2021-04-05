@@ -14,6 +14,6 @@ Rails.application.routes.draw do
       get :events_attended
     end
   end
-  post "/users/:user_id/pending", to: "teammate_links#pending", as: :pending_teammate_link
+  post "/users/:id/pending", to: "teammate_links#pending", as: :pending_teammate_link
   get "/test", to: "teammate_links#test"
 end

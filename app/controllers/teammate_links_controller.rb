@@ -1,7 +1,28 @@
 class TeammateLinksController < ApplicationController
-  def create
+  def pending
     teammate = User.find(params[:id])
-    create_pending(teammate)
+    # check actual state
+    outgoing = TeammateLink.where(user: current_user, teammate: teammate)[0]
+    incoming = TeammateLink.where(user: teammate, teammate: current_user)[0]
+    if incoming.nil? && outgoing.nil?
+      #create link if none exist
+      TeammateLink.new(user: current_user, teammate: teammate).save
+    elsif incoming.nil?
+      #change status to pending if outgoing exist and not incoming
+      outgoing.status = "pending"
+      outgoing.save
+    elsif outgoing.nil?
+      if incoming.status != "blocked"
+        # accept teammate if incoming not blocked ( accepted || pending) and incoming not exist
+        # do nothing if blocked
+        accept_teammate(current_user, teammate)
+      end
+    else
+      if incoming.status == "blocked"
+        # clean up if incoming is blocked
+
+    end
+    byebug
   end
 
   def create_old
@@ -53,6 +74,33 @@ class TeammateLinksController < ApplicationController
   end
 
   private
+
+  def clean_up(user1, user2)
+    link1 = TeammateLink.where(user: user1, teammate: user2)[0]
+    link2 = TeammateLink.where(user: user2, teammate: user1)[0]
+    if !link1.nil? && !link2.nil?
+      if link1.status == "blocked" && link2.status != "blocked"
+        link2.destroy
+      elsif link2.status == "blocked" && link1.status != "blocked"
+        link1.destroy
+      elsif link1.status == "accepted" && link2.status != "accepted"
+        link2.status = "accepted"
+        link2.save
+      elsif link2.status == "accepted" && link1.status != "accepted"
+        link1.status = "accepted"
+        link1.save
+      elsif link1.status == "pending" && link2.status == "pending"
+        link1.status = "accepted"
+        link1.save
+        link2.status = "accepted"
+        link2.save
+      end
+    elsif !link1.nil? && link1.status == "accepted"
+      link1.destroy
+    elsif !link2.nil? && link2.status == "accepted"
+      link2.destroy
+    end
+  end 
 
   def create_pending(teammate)
   end
