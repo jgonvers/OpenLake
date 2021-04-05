@@ -1,0 +1,16 @@
+.card-user-tmate {
+  width: 95%;
+  height: 130px;
+  i {
+    font-size: 30px;
+  }
+  .accepted {
+    color:green;
+  } 
+  .refused {
+    color: orange
+  }
+  .blocked {
+    color: red;
+  }
+}
