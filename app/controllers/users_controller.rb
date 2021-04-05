@@ -51,4 +51,8 @@ class UsersController < ApplicationController
     @events = User.find(params[:id]).events
     render "events/index"
   end
+
+  def pending_teammates
+    @pending_tmates = TeammateLink.where(teammate: current_user, status: "pending")
+  end
 end
