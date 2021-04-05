@@ -22,7 +22,7 @@ class User < ApplicationRecord
   #   using: {
   #     tsearch: { prefix: true } # typing "maxime jo" will return "maxime jost"
   #   }
-  
+
   def common_teammates(current_user)
     return "No common T-Mate" if current_user.nil?
 
@@ -58,6 +58,12 @@ class User < ApplicationRecord
   end
 
   def firstname_lastname_firstletter
-    "#{self.first_name.capitalize} #{self.last_name.split("").first.capitalize}."
+    "#{first_name.capitalize} #{last_name.split('').first.capitalize}."
+  end
+
+  def accepted_teammates
+    links = teammate_links
+    links = links.select { |link| link.status == "accepted" }
+    links.map(&teammate)
   end
 end
