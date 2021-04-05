@@ -49,4 +49,8 @@ class User < ApplicationRecord
 
     return false
   end
+
+  def firstname_lastname_firstletter
+    "#{self.first_name.capitalize} #{self.last_name.split("").first.capitalize}."
+  end
 end
