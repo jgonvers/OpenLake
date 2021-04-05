@@ -15,4 +15,5 @@ Rails.application.routes.draw do
     end
   end
   post "/users/:user_id/:status", to: "teammate_links#create", as: :create_teammate_link
+  get "/test", to: "teammate_links#test"
 end
