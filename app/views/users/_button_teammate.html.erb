@@ -1,10 +1,10 @@
 <% if current_user == nil || !current_user.teammates.include?(user) || current_user == user %>
-  <a href="#">
+  <%= link_to pending_teammate_path(user), method: :post do %>
     <div class="button-teammate d-flex flex-row justify-content-center align-items-center fist">
       <i class="fas fa-fist-raised mr-2"></i>
       <p>T-Mate!</p>
     </div>
-  </a>
+  <% end %>
 <% else %>
   <div class="button-teammate d-flex flex-row justify-content-around align-items-center fist check">
     <i class="fas fa-check mr-2"></i>

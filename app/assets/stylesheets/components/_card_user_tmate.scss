@@ -1,0 +1,20 @@
+.card-user-tmate {
+  width: 95%;
+  height: 130px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.08);
+  .btn-pending {
+    color: white;
+    padding: 7px 7px;
+    border-radius: 5px;
+    margin-left: 10px
+  }
+  .accepted {
+    background-color: $primary-color;
+  } 
+  .refused {
+    background-color: grey;
+  }
+}

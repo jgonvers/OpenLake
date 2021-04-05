@@ -1,0 +1,5 @@
+<% @pending_tmates.each do |tmate| %>
+<%= render "users/card_user_tmate", user:tmate %>
+<% end %>
+
+<%= javascript_pack_tag 'remove_card_user_pending'%>
