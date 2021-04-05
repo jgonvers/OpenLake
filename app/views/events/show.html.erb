@@ -30,10 +30,10 @@
     <p class="text-justify event-content"><%= @event.content %></p>
   </div>
   <hr>
-    <% if current_user != nil && current_user.teammates_in_event?(@event) %>
+    <% if current_user != nil && !@teammates_in_event?.nil? %>
       <h3>T-Mates</h3>
       <div class="d-flex flex-row flex-wrap justify-content-center">
-      <% current_user.teammates_in_event(@event).each do |teammate| %>
+      <% @teammates_in_event.each do |teammate| %>
         <%= link_to  user_path(teammate) do %>
           <div class="teammate-profile">
             <div>

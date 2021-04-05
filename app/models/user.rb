@@ -26,9 +26,10 @@ class User < ApplicationRecord
   def common_teammates(current_user)
     return "No common T-Mate" if current_user.nil?
 
+    cu_teammates = current_user.accepted_teammates
     count = 0
-    teammates.each do |teammate|
-      count += 1 if current_user.teammates.include? teammate
+    accepted_teammates.each do |teammate|
+      count += 1 if cu_teammates.include? teammate
     end
 
     return "No common T-Mate" if count.zero?
@@ -42,14 +43,14 @@ class User < ApplicationRecord
 
   def teammates_in_event(event)
     team_event = event.users
-    team_user = teammates
+    team_user = accepted_teammates
     team_event = team_event.select { |team| team_user.include? team }
     team_event << event.creator if team_user.include? event.creator
     return team_event
   end
 
   def teammates_in_event?(event)
-    team = teammates
+    team = accepted_teammates
     event.users.each { |user| return true if team.include? user }
 
     return true if team.include? event.creator
@@ -64,6 +65,6 @@ class User < ApplicationRecord
   def accepted_teammates
     links = teammate_links
     links = links.select { |link| link.status == "accepted" }
-    links.map(&teammate)
+    links.map(&:teammate)
   end
 end

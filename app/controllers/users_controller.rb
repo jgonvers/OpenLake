@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 
   def teammates
     @user = User.find(params[:id]) # user ID
-    @users = @user.teammates # array of teammates of @user
+    @users = @user.accepted_teammates # array of teammates of @user
     render 'users/index'
   end
 
