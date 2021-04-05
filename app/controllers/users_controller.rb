@@ -54,5 +54,6 @@ class UsersController < ApplicationController
 
   def pending_teammates
     @pending_tmates = TeammateLink.where(teammate: current_user, status: "pending")
+    @pending_tmates = @pending_tmates.map(&:user)
   end
 end

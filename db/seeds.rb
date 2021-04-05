@@ -10,8 +10,8 @@
 
 def teammate_create(user1, user2)
   if TeammateLink.where(user:user1, teammate:user2).count.zero?
-    TeammateLink.new(user:user1, teammate:user2).save!
-    TeammateLink.new(user:user2, teammate:user1).save!
+    TeammateLink.new(user:user1, teammate:user2, status: "accepted").save!
+    TeammateLink.new(user:user2, teammate:user1, status: "accepted").save!
   end
 end
 
@@ -77,7 +77,7 @@ end
     volleyball: 'fa-volleyball-ball'
   }
 
-puts "create 1 user Camilla@email.com"
+puts "create 1 user camilla@email.com"
 u = User.new(
   first_name: "Camilla",
   last_name: Faker::Name.last_name,
