@@ -1,19 +1,12 @@
 <div class="card-user-tmate d-flex justify-content-start align-items-center">
-  <%= link_to user_path(user) do %>
+  <%= link_to user_path(user), class: "m-2" do %>
     <%= cl_image_tag user.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-card-user" %>
   <% end %>
   <div class="d-flex flex-column justify-content-center align-items-start">
-    <h3><%= "#{user.first_name} #{user.last_name}" %></h3>
+    <p><strong><%= "#{user.first_name} #{user.last_name}" %></strong> want to be your teammate</h3>
     <div class="d-flex justify-content-around">
-      <%= link_to accepted_teammate_path(user), method: :post, remote: true do %>
-        <i class="far fa-check-circle accepted"></i>
-      <% end %>
-      <%= link_to destroy_teammate_path(user), method: :delete, remote: true do %>
-        <i class="far fa-times-circle refused"></i>
-      <% end %>
-      <%= link_to "#", method: :post, remote: true do %>
-        <i class="fas fa-ban blocked"></i>
-      <% end%>
+      <%= link_to "accept", accepted_teammate_path(user), method: :post, remote: true, class: "btn-pending accepted" %>
+      <%= link_to "refuse", destroy_teammate_path(user), method: :delete, remote: true, class: "btn-pending refused" %>
     </div>
   </div>
 </div>
