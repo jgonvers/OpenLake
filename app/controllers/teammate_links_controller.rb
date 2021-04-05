@@ -40,9 +40,6 @@ class TeammateLinksController < ApplicationController
     end
   end
 
-  def test
-  end
-
   private
 
   def clean_up
