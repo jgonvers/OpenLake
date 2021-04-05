@@ -21,10 +21,8 @@
         Filters
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button">Date</button>
-        <button class="dropdown-item" type="button">Distance</button>
-        <button class="dropdown-item" type="button">Teammate</button>
-        <button class="dropdown-item" type="button">Categories</button>
+        <%= link_to 'Date', events_path(dropdown: 'date') %>
+        <%= link_to 'Distance', events_path(dropdown: 'distance') %>
       </div>
     </div>
 </div>
