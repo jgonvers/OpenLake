@@ -39,11 +39,12 @@ class UsersController < ApplicationController
     else
       @users = User.all
     end
+    @users = @users.reject { |user| user == current_user }
   end
 
   def teammates
     @user = User.find(params[:id]) # user ID
-    @users = @user.teammates # array of teammates of @user
+    @users = @user.accepted_teammates # array of teammates of @user
     render 'users/index'
   end
 

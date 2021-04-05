@@ -15,6 +15,7 @@ class EventsController < ApplicationController
       lat: @event.latitude,
       lng: @event.longitude
     }]
+    @teammates_in_event = current_user.nil? ? nil : current_user.teammates_in_event
   end
 
   def new
