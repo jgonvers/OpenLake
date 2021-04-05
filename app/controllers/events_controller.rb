@@ -5,12 +5,13 @@ class EventsController < ApplicationController
     @events = Event.all
     if params[:dropdown] == 'date'
       @events = Event.all.order(:start_time)
-    elsif params[:dropdown] == 'distance'
+    elsif params[:dropdown] == 'distance' || params[:dropdown] == nil
       @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
     elsif params[:dropdown] == 'teammate'
       @events = @events.select do |e|
         current_user.teammates_in_event?(e)
       end
+      @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
     else
       @events = @events.select do |e|
         e.category.name == params[:dropdown]
