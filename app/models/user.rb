@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :attendances
   has_many :events, through: :attendances
   has_many :reviews
-  has_many :teammate_link
-  has_many :teammates, through: :teammate_link
+  has_many :teammate_links
+  has_many :teammates, through: :teammate_links
   has_many :created_events, foreign_key: :creator_id, class_name: :Event
   has_one_attached :photo
 
