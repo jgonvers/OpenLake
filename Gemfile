@@ -32,10 +32,10 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
 
-#map et geolocalisation
+# map et geolocalisation
 gem 'geocoder'
 
-#cloudinary
+# cloudinary
 gem 'cloudinary', '~> 1.16.0'
 
 gem 'devise'
@@ -70,3 +70,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'aasm'

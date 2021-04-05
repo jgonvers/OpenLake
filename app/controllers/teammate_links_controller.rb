@@ -1,6 +1,11 @@
 class TeammateLinksController < ApplicationController
   def create
     teammate = User.find(params[:id])
+    create_pending(teammate)
+  end
+
+  def create_old
+    teammate = User.find(params[:id])
 
     return if teammate_link_exist?(current_user, teammate)
 
@@ -44,16 +49,13 @@ class TeammateLinksController < ApplicationController
     end
   end
 
-  def update
-  end
-
-  def destroy
-  end
-
   def test
   end
 
   private
+
+  def create_pending(teammate)
+  end
 
   def teammate_link_exist?(user, teammate)
     !TeammateLink.where(user: user, teammate: teammate).count.zero?
