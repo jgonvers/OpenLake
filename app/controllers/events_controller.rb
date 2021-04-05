@@ -2,15 +2,15 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   # before_filter :authenticate_user!
   def index
-    # @events = []
-    # date = Time.now
-    # Event.all.each { |e| @events << e if e.start_time >= date }
-    # @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
     @events = Event.all
     if params[:dropdown] == 'date'
       @events = Event.all.order(:start_time)
-    else
+    elsif params[:dropdown] == 'distance'
       @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
+    else
+      @events = @events.select do |e|
+        current_user.teammates_in_event?(e)
+      end
     end
     render layout: 'layout_index'
   end
