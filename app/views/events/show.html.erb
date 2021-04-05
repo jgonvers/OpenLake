@@ -35,8 +35,15 @@
       <div class="d-flex flex-row flex-wrap justify-content-center">
       <% current_user.teammates_in_event(@event).each do |teammate| %>
         <%= link_to  user_path(teammate) do %>
-          <%= cl_image_tag teammate.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-teammate m-2" %>
-        <% end %> 
+          <div class="teammate-profile">
+            <div>
+              <%= cl_image_tag teammate.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-teammate m-2" %>
+            </div>
+            <div>
+              <p style="text-align: center; color: black; font-size: 14px;"><%= teammate.first_name %></p>
+            </div>
+          </div>
+        <% end %>
       <% end %>
       </div>
       <hr>
