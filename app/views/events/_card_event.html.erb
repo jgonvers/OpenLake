@@ -7,12 +7,12 @@
         <div id="event-title">
           <%= event.title %>
           <% if current_user != nil && current_user.teammates_in_event?(event) %>
-            <%= image_tag "icons/fist_raised.svg", alt: "fist", width: 25, height: 25, id: "fist_raised" %>
+            <%= image_tag "icons/fist_raised.svg", alt: "fist", width: 14, height: 20, id: "fist_raised" %>
           <% end %>
         </div>
-        
+
         <div id="event-creator"><%= event.creator.first_name %> <%= event.creator.last_name %></div>
-        
+
           <div class="card-elements">
             <div>
               <%= image_tag "icons/calendar.svg", alt: "calendar-clock", width: 15, height: 15, id: "calendar" %>
@@ -22,7 +22,7 @@
               <%= image_tag "icons/clock.svg", alt: "icon-clock", width: 15, height: 15, id: "clock" %>
               <%= event.start_time.strftime("%H:%M") %>-<%= event.end_time.strftime("%H:%M") %>
             </div>
-            
+
           </div>
           <% unless current_user.nil? %>
             <div class="card-distance">
@@ -35,7 +35,7 @@
               <p><%= "#{4} km" %></p>
             </div>
           <% end %>
-      
+
       </div>
     </div>
   </div>
