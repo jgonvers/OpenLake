@@ -24,7 +24,7 @@
 }
 
 .teammate_request {
-  display: flex
+  display: flex;
 }
 
 .teammate_nb {
@@ -33,6 +33,12 @@
   font-style: bold;
   margin-top: -6px;
   margin-left: -5px;
+}
+
+
+.teammate_request img {
+  height: 35px;
+  width: 37px;
 }
 
 
