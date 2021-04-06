@@ -15,7 +15,10 @@ class TeammateLinksController < ApplicationController
 
   def destroy
     teammate = User.find(params[:id])
-    TeammateLink.where(user: current_user, teammate: teammate)[0]&.destroy
+    incoming = TeammateLink.where(user: current_user, teammate: teammate)[0]
+    outgoing = TeammateLink.where(user: teammate, teammate: current_user)[0]
+    incoming&.destroy unless incoming&.status == "blocked"
+    outgoing&.destroy unless outgoing&.status == "blocked"
   end
 
   def blocked
