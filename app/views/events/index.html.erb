@@ -1,7 +1,9 @@
 <% @events.each do |event| %>
-<a class="text-reset" href="<%= event_path(event) %>">
-  <div class="mb-1">
-    <%= render 'events/card_event' , event:event %>
-  </div>
-</a>
+  <% if event.end_time < Time.now %>
+  <a class="text-reset" href="<%= event_path(event) %>">
+    <div class="mb-1">
+      <%= render 'events/card_event' , event:event %>
+    </div>
+  </a>
+  <% end %>
 <% end %>
