@@ -35,10 +35,10 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.creator_id = current_user.id
     if @event.save
-      redirect_to events_path
+      redirect_to event_path(@event), success: "Your event #{@event.title} was successfully created!"
     else
       @categories = Category.all.distinct
-      render :new
+      render :new, danger: "Event could not be created"
     end
   end
 
