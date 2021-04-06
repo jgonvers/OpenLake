@@ -2,7 +2,7 @@
   <% if current_user.nil? %>
   <%= image_tag "icons/back_arrow.svg", class:"navbar-avatar" %>
   <% else %>
-    <%= link_to image_tag("icons/back_arrow.svg"), :back %>
+    <%= link_to image_tag("icons/back_arrow.svg"), 'javascript:history.go(-1);' %>
   <% end %>
   <div class="navbar-form-all-but-index">
     <%= form_tag users_path, method: :get do %>
