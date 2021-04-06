@@ -2,36 +2,17 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   # before_filter :authenticate_user!
   def index
-    @events = Event.all
+    @events = Event.all.select { |event| event.start_time >= Time.now }
     if params[:dropdown] == 'date'
-      @events = Event.all.order(:start_time)
-      @events = Event.all.select do |event|
-        event.start_time >= Time.now
-      end
-    elsif params[:dropdown] == 'distance' || params[:dropdown] == nil
-      @events = Event.all.select do |event|
-        event.start_time >= Time.now
-      end
-      @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
-    elsif params[:dropdown] == 'teammate'
-      @events = Event.all.select do |event|
-        event.start_time >= Time.now
-      end
-      @events = @events.select do |e|
-        current_user.teammates_in_event?(e)
-      end
-      @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
+      @events = @events.sort_by(&:start_time)
     else
-      @events = Event.all.select do |event|
-        event.start_time >= Time.now
-      end
-      @events = @events.select do |e|
-        e.category.name == params[:dropdown]
-      end
-      @events = Event.all.select do |event|
-        event.start_time >= Time.now
-      end
       @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
+    end
+
+    if params[:dropdown] == 'teammate'
+      @events = @events.select { |e| current_user.teammates_in_event?(e) }
+    elsif Category.all.map(&:name).include? params[:dropdown]
+      @events = @events.select { |e| e.category.name == params[:dropdown] }
     end
     render layout: 'layout_index'
   end
