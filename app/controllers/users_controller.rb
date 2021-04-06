@@ -58,6 +58,9 @@ class UsersController < ApplicationController
 
   def events_attended
     @events = User.find(params[:id]).events
+    @events = @events.select do |event|
+      event.end_time <= Time.now
+    end
     render "events/index"
   end
 
