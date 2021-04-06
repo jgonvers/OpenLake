@@ -15,9 +15,12 @@
   <body>
     <%= render 'events/navbar_all_but_index' %>
     <% flash.each do |name, msg| %>
-      <div class="alert alert-<%= name %> alert-dismissible fade show">
+      <div class="alert alert-<%= name %> alert-dismissible fade show flash-custom">
         <%= msg %>
-      </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <% end %>
     <%= yield %>
     <div class="footer-size"></div>
