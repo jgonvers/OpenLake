@@ -6,13 +6,13 @@
     </div>
   <% end %>
 <% elsif current_user.accepted_teammates.include?(user) || current_user == user %>
-  <div class="button-teammate d-flex flex-row justify-content-center align-items-center fist">
-    <i class="far fa-hourglass mr-2"></i>
-    <p>Requested</p>
-  </div>
-<% else %>
   <div class="button-teammate d-flex flex-row justify-content-center align-items-center check">
     <i class="fas fa-check mr-2"></i>
     <p>T-Mate</p>
+  </div>
+<% else %>
+  <div class="button-teammate d-flex flex-row justify-content-center align-items-center fist">
+    <i class="far fa-hourglass mr-2"></i>
+    <p>Requested</p>
   </div>
 <% end %>
