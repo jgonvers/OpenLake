@@ -53,6 +53,7 @@ class UsersController < ApplicationController
 
   def events_created
     @events = User.find(params[:id]).created_events
+    @events = @events.sort_by(&:start_time).reverse
     render "events/index"
   end
 
