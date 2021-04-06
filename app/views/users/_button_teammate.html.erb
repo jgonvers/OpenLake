@@ -1,12 +1,17 @@
-<% if current_user == nil || !current_user.teammates.include?(user) || current_user == user %>
+<% if current_user == nil || !current_user.teammates.include?(user) %>
   <%= link_to pending_teammate_path(user), method: :post do %>
     <div class="button-teammate d-flex flex-row justify-content-center align-items-center fist">
       <i class="fas fa-fist-raised mr-2"></i>
       <p>T-Mate!</p>
     </div>
   <% end %>
+<% elsif current_user.accepted_teammates.include?(user) || current_user == user %>
+  <div class="button-teammate d-flex flex-row justify-content-center align-items-center fist">
+    <i class="far fa-hourglass mr-2"></i>
+    <p>Requested</p>
+  </div>
 <% else %>
-  <div class="button-teammate d-flex flex-row justify-content-around align-items-center fist check">
+  <div class="button-teammate d-flex flex-row justify-content-center align-items-center check">
     <i class="fas fa-check mr-2"></i>
     <p>T-Mate</p>
   </div>
