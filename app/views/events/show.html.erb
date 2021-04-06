@@ -59,13 +59,15 @@
       <hr>
     <% end %>
   <br>
-  <div class="text-center mb-4">
-    <% if current_user != nil && (@event.users.include? current_user || @event.creator == current_user) %>
-      <%= link_to 'Cancel attendance', event_attendances_path(@event), method: :post, class: 'text-center text-reset align-middle', id: 'btn-cancel' %>
-    <% else %>
-      <%= link_to 'Attend this event', event_attendances_path(@event), method: :post, class: 'text-center text-reset align-middle', id: 'btn-attend'  %>
-    <% end %>
-  </div>
+  <% unless current_user == @event.creator %>
+    <div class="text-center mb-4">
+      <% if current_user != nil && (@event.users.include? current_user) %>
+        <%= link_to 'Cancel attendance', event_attendances_path(@event), method: :post, class: 'text-center text-reset align-middle', id: 'btn-cancel' %>
+      <% else %>
+        <%= link_to 'Attend this event', event_attendances_path(@event), method: :post, class: 'text-center text-reset align-middle', id: 'btn-attend'  %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 <%= content_tag :div, '', id: 'mycontainer', data: { address: @event.address, start_time: @event.start_time } %>
 <%= javascript_pack_tag 'weather_forecast'%>
