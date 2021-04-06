@@ -14,7 +14,11 @@
 
   <body>
     <%= render 'events/navbar_all_but_index' %>
-
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name %> alert-dismissible fade show">
+        <%= msg %>
+      </div>
+    <% end %>
     <%= yield %>
     <div class="footer-size"></div>
     <%= render 'events/footer' %>
