@@ -30,7 +30,7 @@
     <p class="text-justify event-content"><%= @event.content %></p>
   </div>
   <hr>
-    <% if current_user != nil && !@teammates_in_event?.nil? %>
+    <% if current_user != nil && !@teammates_in_event.nil? %>
       <h3>T-Mates</h3>
       <div class="d-flex flex-row flex-wrap justify-content-center">
       <% @teammates_in_event.each do |teammate| %>
