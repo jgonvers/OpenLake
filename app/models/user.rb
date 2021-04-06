@@ -67,4 +67,5 @@ class User < ApplicationRecord
     links = links.select { |link| link.status == "accepted" }
     links.map(&:teammate)
   end
+
 end
