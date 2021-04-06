@@ -15,7 +15,22 @@
         class: "form-control",
         placeholder: "Find a T-Mate"  %>
       <% end %>
-  </div class='filter-icon'>
-    <%= image_tag("icons/filter.svg") %>
   </div>
+    <div class="dropdown">
+      <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= image_tag("icons/filter.svg") %>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <%= link_to 'Date', events_path(dropdown: 'date'), class: "link" %>
+        <%= link_to 'Distance', events_path(dropdown: 'distance'), class: "link"  %>
+        <%= link_to 'Teammate', events_path(dropdown: 'teammate'), class: "link"  %>
+        <div class="dropdown-divider"></div>
+        <%= link_to 'Biking', events_path(dropdown: 'biking'), class: "link"  %>
+        <%= link_to 'Bowling', events_path(dropdown: 'bowling'), class: "link"  %>
+        <%= link_to 'Football', events_path(dropdown: 'football'), class: "link"  %>
+        <%= link_to 'Running', events_path(dropdown: 'running'), class: "link"  %>
+        <%= link_to 'Volleyball', events_path(dropdown: 'volleyball'), class: "link"  %>
+        <%= link_to 'Swimming', events_path(dropdown: 'swimming'), class: "link"  %>
+      </div>
+    </div>
 </div>

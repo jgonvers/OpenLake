@@ -34,8 +34,44 @@
 
 .navbar-form-index {
   width: 240px;
+  margin-left: -22px;
 }
 
 .navbar-form-all-but-index {
   width: 260px;
+}
+
+#dropdownMenu2 {
+  width: 30px;
+  background-color: #F85A3E;
+  border: none;
+  color: black;
+  margin-left: -45px;
+}
+
+.dropdown-menu {
+  background-color: #F85A3E;
+  min-width: 5px;
+  width: 90px;
+  font-size: 14px;
+  text-align: left;
+  padding: 5px;
+  transform: translate3d(-75px, 47px, 0px);
+}
+
+.btn-secondary:hover {
+  border-color: none;
+  box-shadow: none;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary.active:not(:disabled):not(.disabled):focus, .show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.dropdown-item {
+  padding-left: 8px;
+}
+
+.link {
+  color: white !important;
 }
