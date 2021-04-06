@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
   # before_filter :authenticate_user!
   def index
-    @events = Event.all.select { |event| event.start_time >= Time.now }
+    @events = Event.geocoded.select { |event| event.start_time >= Time.now }
     if params[:dropdown] == 'date'
       @events = @events.sort_by(&:start_time)
     else
