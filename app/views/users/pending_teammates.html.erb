@@ -1,5 +1,8 @@
-<% @pending_tmates.each do |tmate| %>
-<%= render "users/card_user_tmate", user:tmate %>
+<% if @pending_tmates.count.zero? %>
+  <h4 class="empty-message">You have no pending teammate invitation</h4>
+<% else %>
+  <% @pending_tmates.each do |tmate| %>
+    <%= render "users/card_user_tmate", user:tmate %>
+  <% end %>
+  <%= javascript_pack_tag 'remove_card_user_pending'%>
 <% end %>
-
-<%= javascript_pack_tag 'remove_card_user_pending'%>
