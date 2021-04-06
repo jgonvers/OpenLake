@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       @upcoming_events = []
       @past_events = []
       @user.events.each { |event| @upcoming_events << event if event.start_time > Time.now }
-      @user.events.each { |event| @past_events << event if event.end_time < Time.now }
+      @user.events.each { |event| @past_events << event if event.end_time <= Time.now }
       @pending_teammates_count = pending_teammates.count
     else
       @past_events = []
