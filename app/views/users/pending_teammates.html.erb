@@ -1,5 +1,5 @@
 <% if @pending_tmates.count.zero? %>
-  <h4 class="m-3 ml-5 mr-5 text-align-center text-secondary">You have no pending teammate invitation</h3>
+  <h4 class="empty-message">You have no pending teammate invitation</h4>
 <% else %>
   <% @pending_tmates.each do |tmate| %>
     <%= render "users/card_user_tmate", user:tmate %>
