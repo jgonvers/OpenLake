@@ -53,11 +53,16 @@ class UsersController < ApplicationController
 
   def events_created
     @events = User.find(params[:id]).created_events
+    @events = @events.sort_by(&:start_time).reverse
     render "events/index"
   end
 
   def events_attended
-    @events = User.find(params[:id]).events
+    @events_participated = User.find(params[:id]).events
+    @events_created = User.find(params[:id]).created_events
+    @events = @events_created.nil? ? @events_participated : @events_participated + @events_created
+    @events = @events.select { |event| event.end_time <= Time.now }
+    @events = @events.sort_by(&:end_time).reverse
     render "events/index"
   end
 
