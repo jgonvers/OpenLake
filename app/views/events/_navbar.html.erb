@@ -1,17 +1,10 @@
-<div class="navbar-index">
+<div class="navbar">
   <% if current_user.nil? %>
   <%= image_tag "icons/back_arrow.svg", class:"navbar-avatar" %>
   <% else %>
     <%= link_to image_tag("icons/back_arrow.svg"), 'javascript:history.go(-1);' %>
   <% end %>
-  <div class="navbar-form-all-but-index">
-    <%= form_tag users_path, method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find a T-Mate"  %>
-      <% end %>
-  </div>
+  <h1>OpenLake</h1>
   <%= link_to destroy_user_session_path, method: :delete do %>
     <i class="fas fa-sign-out-alt"></i>
   <% end %>
