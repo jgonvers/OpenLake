@@ -55,7 +55,7 @@ body {
   }
 }
 
-input[type="radio"]:checked ~ * {
+.create-main-container input[type="radio"]:checked ~ * {
   border-radius: 40%;
   background-color: #f2efef;
   padding: 2px;

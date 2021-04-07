@@ -1,3 +1,21 @@
+<div class="search hidden">
+  <form action="<%= events_path %>" class="form-search">
+    <div class="form-sort">
+      <label for="search_sort_date"><input type="radio" name="search[sort]" id="search_sort_date" value="date"><%= image_tag "icons/calendar.svg" %></label>
+      <label for="search_sort_distance"><input type="radio" name="search[sort]" id="search_sort_distance" value="distance"><%= image_tag "icons/map_marker.svg" %></label>
+    </div>
+    <div class="form-category">
+    <% Category.all.each do |category| %>
+      <label for="category<%= category.id %>">
+        <input type="checkbox" id="category<%= category.id %>" name="search[category][<%= category.id %>]" value="true">
+        <i class='fas <%= category.logo_link %>'></i>
+      </label>
+    <% end %>
+    </div>
+    <input type="submit" value="Search" formmethod="get">
+  </form>
+</div>
+<span id="btn-filter">Filter options</span>
 <h5 style="font-size: 17px; margin-left: 10px; margin-top: 13px; color: #70757A; ">You have <strong><%= @events.count %></strong> sports events <strong>around you</strong></h5>
 <% @events.each do |event| %>
   <%= link_to event_path(event), class: "text-reset" do %>
@@ -6,3 +24,4 @@
     </div>
   <% end %>
 <% end %>
+<%= javascript_pack_tag "button-show-filter" %>

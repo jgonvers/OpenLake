@@ -3,18 +3,20 @@ class EventsController < ApplicationController
   # before_filter :authenticate_user!
   def index
     @events = Event.geocoded.select { |event| event.start_time >= Time.now }
-    if params[:dropdown] == 'date'
-      @events = @events.sort_by(&:start_time)
-    else
+    return if params[:search].nil?
+
+    if params[:search][:sort].nil? || params[:search][:sort].nil? == 'distance'
       @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
+    else
+      @events = @events.sort_by(&:start_time)
     end
 
-    if params[:dropdown] == 'teammate'
-      @events = @events.select { |e| current_user.teammates_in_event?(e) }
-    elsif Category.all.map(&:name).include? params[:dropdown]
-      @events = @events.select { |e| e.category.name == params[:dropdown] }
+    unless params[:search][:category].nil?
+      @events = select_category(@events,
+                                params[:search][:category].keys.map(&:to_i))
     end
-    render layout: 'layout_index'
+
+    @events = @events.select { |e| current_user.teammates_in_event?(e) } unless params[:search][:teammate].nil?
   end
 
   def show
@@ -51,6 +53,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def select_category(events, categories)
+    events.select { |e| categories.include? e.category_id }
+  end
 
   def event_params
     params.require(:event).permit(:category_id, :title, :content, :address, :participants_maximum, :start_time,
