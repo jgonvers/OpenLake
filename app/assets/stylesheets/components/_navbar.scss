@@ -1,4 +1,4 @@
-.navbar-index {
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -19,6 +19,11 @@
     font-size: 30px;
     color: black;
     margin-right: 10px;
+  }
+  h1 {
+    font-size: 35px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: normal;
   }
 }
 
