@@ -1,0 +1,6 @@
+<div class="avatar-list">
+  <% users.each_with_index do |user, n| %>
+    <%= cl_image_tag user.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar#{n}" %>
+    <% break if n >= 4 %>
+  <% end %>
+</div>
