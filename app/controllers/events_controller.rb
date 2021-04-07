@@ -14,7 +14,6 @@ class EventsController < ApplicationController
     elsif Category.all.map(&:name).include? params[:dropdown]
       @events = @events.select { |e| e.category.name == params[:dropdown] }
     end
-    render layout: 'layout_index'
   end
 
   def show

@@ -1,3 +1,28 @@
+<div class="formtest">
+  <form action="<%= events_path %>">
+    <div class="form-sort">
+      <input type="radio" name="search[sort]" id="search_sort_date" value="date">
+      <label for="search_sort_date">date</label>
+      <input type="radio" name="search[sort]" id="search_sort_distance" value="distance">
+      <label for="search_sort_distance">distance</label>
+    </div>
+    <div class="form-category">
+    <% Category.all.each do |category| %>
+      <label for="category<%= category.id %>">
+        <input type="checkbox" id="category<%= category.id %>" name="search[category][<%= category.id %>]" value="true">
+        <i class='fas <%= category.logo_link %>'></i>
+      </label>
+    <% end %>
+    </div>
+    <div class="form-teammate">
+      <label for="search_teammate">include only teammates</label>
+      <input type="checkbox" name="search[teammate]" id="search_teammate" value="true">
+    </div>
+    <input type="submit" value="Submit" formmethod="get">
+  </form>
+<div>
+
+<h3><%= "#{@events.count} events"%></h3>
 <% @events.each do |event| %>
   <%= link_to event_path(event), class: "text-reset" do %>
     <div class="mb-1">
