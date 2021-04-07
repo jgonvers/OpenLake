@@ -7,7 +7,7 @@
         <div id="event-title">
           <%= event.title %>
           <% if current_user != nil && current_user.teammates_in_event?(event) %>
-            <%= image_tag "icons/fist_raised.svg", alt: "fist", width: 14, height: 20, id: "fist_raised" %>
+            <%= render 'users/avatar_list', users:current_user.teammates_in_event(event) %>
           <% end %>
         </div>
 
