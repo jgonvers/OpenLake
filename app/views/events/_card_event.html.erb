@@ -7,12 +7,12 @@
         <div id="event-title">
           <%= event.title %>
           <% if current_user != nil && current_user.teammates_in_event?(event) %>
-            <%= image_tag "icons/fist_raised.svg", alt: "fist", width: 14, height: 20, id: "fist_raised" %>
+            <%= render 'users/avatar_list', users:current_user.teammates_in_event(event) %>
           <% end %>
         </div>
 
         <div id="event-creator">
-          <%= cl_image_tag event.creator.photo.key, height: 400, width: 400, crop: :crop, gravity: :face %>
+          <%= "By:"%>
           <%= event.creator.first_name %>
           <%= event.creator.last_name %>
         </div>
