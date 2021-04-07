@@ -11,7 +11,11 @@
           <% end %>
         </div>
 
-        <div id="event-creator"><%= event.creator.first_name %> <%= event.creator.last_name %></div>
+        <div id="event-creator">
+          <%= cl_image_tag event.creator.photo.key, height: 400, width: 400, crop: :crop, gravity: :face %>
+          <%= event.creator.first_name %>
+          <%= event.creator.last_name %>
+        </div>
 
           <div class="card-elements">
             <div>
