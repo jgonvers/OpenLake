@@ -5,7 +5,7 @@
     <%= link_to image_tag("icons/plus.svg"), new_event_path %>
     <div class="teammate_request">
       <%= link_to image_tag("icons/user-solid.svg"), pending_teammates_path, class: "img_user" %>
-      <p class="teammate_nb"><%= TeammateLink.where(teammate: current_user, status: "pending").map(&:user).count%> </p>
+      <p class="teammate_nb" style="color: #f7f4f4;"><%= TeammateLink.where(teammate: current_user, status: "pending").map(&:user).count%> </p>
     </div>
   </div>
 </footer>
