@@ -1,3 +1,4 @@
+<h5 style="font-size: 17px; margin-left: 10px; margin-top: 13px; color: #70757A; ">You have <strong><%= @events.count %></strong> sports events <strong>around you</strong></h5>
 <% @events.each do |event| %>
   <%= link_to event_path(event), class: "text-reset" do %>
     <div class="mb-1">
