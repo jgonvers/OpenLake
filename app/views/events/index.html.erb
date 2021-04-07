@@ -1,5 +1,5 @@
-<div class="search d-flex flex-column align-items-center">
-  <form hidden action="<%= events_path %>" class="form-search">
+<div class="search hidden">
+  <form action="<%= events_path %>" class="form-search">
     <div class="form-sort">
       <label for="search_sort_date"><input type="radio" name="search[sort]" id="search_sort_date" value="date"><%= image_tag "icons/calendar.svg" %></label>
       <label for="search_sort_distance"><input type="radio" name="search[sort]" id="search_sort_distance" value="distance"><%= image_tag "icons/map_marker.svg" %></label>
@@ -14,8 +14,8 @@
     </div>
     <input type="submit" value="Search" formmethod="get">
   </form>
-  <span id="btn-filter">Filter options</span>
 </div>
+<span id="btn-filter">Filter options</span>
 <% @events.each do |event| %>
   <%= link_to event_path(event), class: "text-reset" do %>
     <div class="mb-1">
@@ -23,3 +23,4 @@
     </div>
   <% end %>
 <% end %>
+<%= javascript_pack_tag "button-show-filter" %>
