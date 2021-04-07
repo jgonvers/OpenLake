@@ -1,5 +1,5 @@
 <div>
-  <div class="d-flex flex-row justify-content-around align-items-center mb-3 p-3">
+  <div class="d-flex flex-row justify-content-between align-items-center mb-2 p-3">
     <%= cl_image_tag @user.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-profile" %>
       <%= link_to events_attended_user_path(@user), class:"text-reset" do %>
         <div class="d-flex flex-column align-items-center justify-content-center"><p class="font-weight-bold mb-0 profile-number"><%= @past_events.count %></p><p class="mb-0">Attended</p></div>
@@ -12,19 +12,24 @@
       <% end %>
   </div>
 
-  <div class="d-flex flex-row justify-content-around align-items-center mb-3">
-    <h3 class="mb-0"><%= "#{@user.first_name} #{@user.last_name}" %></h3>
-    <% if current_user.nil? || current_user != @user %>
-      <%= render "users/button_teammate", user: @user %>
-    <% end %>
-  </div>
-  <p class="text-justify p-3"><%= @user.content %></p>
+  <% if (current_user.nil? || current_user != @user) %>
 
+    <div class="d-flex flex-row justify-content-between align-items-center mb-3 px-3">
+      <h3 ><%= "#{@user.first_name} #{@user.last_name}" %></h3>
+        <%= render "users/button_teammate", user: @user%>
+    </div>
+  <p class="text-justify p-3" style="font-size: 15px;"><%= @user.content %></p>
+  <% else %>
+    <div class="d-flex flex-row justify-content align-items">
+      <h3 class="pl-3 mb-0"><%= "#{@user.first_name} #{@user.last_name}" %></h3>
+    </div>
+    <p class="text-justify p-3" style="font-size: 15px;"><%= @user.content %></p>
+  <% end %>
 
   <% if (current_user.nil? || current_user != @user) && !@past_events.count.zero? %>
     <hr>
-    <div class="d-flex flex-row justify-content-around align-items-center mb-3">
-        <h3 class="m-0">Events Created</h3>
+    <div class="d-flex flex-row justify-content-between align-items-center mb-3">
+        <h3 class="pl-3 mb-0">Events Created</h3>
         <% unless @rating.negative? %>
           <%= render "reviews/rating", rating: @rating %>
         <% end %>
@@ -40,7 +45,7 @@
     <% end %>
   <% elsif !@upcoming_events.nil? %>
     <hr>
-      <h3 class="m-0">Upcoming Events</h3>
+      <h3 class="pl-3 m-0 mb-3 mt-3">Upcoming Events</h3>
     <div>
       <% @upcoming_events.each do |event| %>
         <div class="mb-1">
