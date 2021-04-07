@@ -2,24 +2,14 @@
   <div class="d-flex flex-row event-show-header ml-2">
     <div class="d-flex flex-column event_info">
       <h1 style="width: 300px;"> <%= "#{@event.title}" %></h1>
-
-      <div class="d-flex flex-row" id="date-and-time">
+      <div class="" id="date-and-time">
         <p><i class="fas fa-calendar-alt"></i> <%= @event.start_time.strftime("%e %B, %Y") %></p>
-        <p><i class="far fa-clock ml-3"></i> <%= "#{@event.start_time.strftime("%k:%m")} to #{@event.end_time.strftime("%k:%m")}"%></p>
+        <p><i class="far fa-clock mt-2"></i> <%= "#{@event.start_time.strftime("%k:%m")} to #{@event.end_time.strftime("%k:%m")}"%></p>
       </div>
     </div>
   </div>
 
-  <div class="d-flex flex-row event-show-header ml-2">
-    <a href="<%= user_path(@event.creator) %>">
-    <%= cl_image_tag @event.creator.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-creator" %>
-    </a>
-    <div class="d-flex flex-column">
-      <h1 class="namelast_name"><%= "#{@event.creator.first_name} #{@event.creator.last_name}" %></h1>
-    </div>
-  </div>
-
- <div class="d-flex flex-row align-items mt-1" id="weather-fc">
+ <div class="d-flex flex-row align-items" id="weather-fc">
     <!-- let this space blank -->
  </div>
 
@@ -33,7 +23,19 @@
     <p class="text-justify event-content"><%= @event.content %></p>
   </div>
   <hr>
-    <% if current_user != nil && !@teammates_in_event.nil? %>
+  <h3>Organizer</h3>
+    <div class="d-flex flex-row event-show-header ml-2 mt-2">
+      <a href="<%= user_path(@event.creator) %>">
+      <%= cl_image_tag @event.creator.photo.key, height: 400, width: 400, crop: :crop, gravity: :face, class:"avatar-creator" %>
+      </a>
+      <div class="d-flex flex-column justify-content-center">
+        <p class="namelast_name" style="font-size: 17px;"><strong><%= "#{@event.creator.first_name} #{@event.creator.last_name}" %></strong></p>
+        <p  style="font-size: 14px;"><%= "#{@event.creator.created_events.count} events created" %></p>
+        <p  style="font-size: 13px;"><%= @event.creator.common_teammates(current_user) %></p>
+      </div>
+    </div>
+    <% if current_user != nil && !@teammates_in_event.nil? && @teammates_in_event.length != 0 %>
+     <hr>
       <h3>T-Mates</h3>
       <div class="d-flex flex-row flex-wrap justify-content-center">
       <% @teammates_in_event.each do |teammate| %>
@@ -49,11 +51,10 @@
         <% end %>
       <% end %>
       </div>
-      <hr>
     <% end %>
   <br>
   <% unless current_user == @event.creator %>
-    <div class="text-center mb-4">
+    <div class="text-center mb-4 mt-3">
       <% if current_user != nil && (@event.users.include? current_user) %>
         <%= link_to 'Cancel attendance', event_attendances_path(@event), method: :post, class: 'text-center text-reset align-middle', id: 'btn-cancel' %>
       <% else %>
