@@ -25,7 +25,7 @@ class EventsController < ApplicationController
     }]
     @teammates_in_event = current_user.nil? ? nil : current_user.teammates_in_event(@event)
   rescue ActiveRecord::RecordNotFound
-    redirect_to events_path, notice: "event not found"
+    redirect_to events_path, success: "event not found"
   end
 
   def new

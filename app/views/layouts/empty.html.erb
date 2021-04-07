@@ -13,7 +13,14 @@
   </head>
 
   <body>
-
+    <% if flash[:success] %>
+      <div class="alert alert-success alert-dismissible fade show flash-custom">
+      <%= flash[:success] %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+    <% end %>
     <%= yield %>
   <%= javascript_pack_tag "remove_alert_timer" %>
   </body>
