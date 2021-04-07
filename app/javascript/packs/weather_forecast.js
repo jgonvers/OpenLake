@@ -19,9 +19,9 @@ const requestAPI = (cityValue, dateevent) => {
       icon_weather = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`; // please let this line even if unuseful
       console.log(icon_weather)
       divDisplay.insertAdjacentHTML("beforeend", `<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png" style="height: 30px; width: 30px;"> `);
-      divDisplay.insertAdjacentHTML("beforeend", `<p style="font-size: 14px; color: #8c8a8a">&nbsp${cloud.capitalize()} -&nbsp</p>`);
-      divDisplay.insertAdjacentHTML("beforeend", `<p style="font-size: 14px; color: #8c8a8a">${temperature}°C -&nbsp</p>`);
-      divDisplay.insertAdjacentHTML("beforeend", `<p style="font-size: 14px; color: #8c8a8a">Humidity: ${data.main.humidity}%</p>`);
+      divDisplay.insertAdjacentHTML("beforeend", `<p style="font-size: 14px; color: #3A3838">&nbsp${cloud.capitalize()} -&nbsp</p>`);
+      divDisplay.insertAdjacentHTML("beforeend", `<p style="font-size: 14px; color: #3A3838">${temperature}°C -&nbsp</p>`);
+      divDisplay.insertAdjacentHTML("beforeend", `<p style="font-size: 14px; color: #3A3838">Humidity: ${data.main.humidity}%</p>`);
     });
 };
 
