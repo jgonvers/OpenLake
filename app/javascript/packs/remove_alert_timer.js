@@ -1,9 +1,9 @@
 function removeAlert() {
-  const alert = document.querySelector("div.alert");
-  if (alert !== null) {
-    alert.parentNode.removeChild(alert);
+  const alerts = document.querySelectorAll("div.alert");
+  if (alerts !== null) {
+    alerts.forEach((alert) => { alert.parentNode.removeChild(alert); });
   }
 }
 
 
-setTimeout(removeAlert, 3000)
+setTimeout(removeAlert, 2500)
