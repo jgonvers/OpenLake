@@ -11,7 +11,7 @@ const requestAPI = (cityValue, dateevent) => {
     .then((data) => {
       console.log(data);
       console.log(divDisplay);
-      const temperature = Math.round((data.main.temp - 273.15) * 100) / 100;
+      const temperature = Math.round(((data.main.temp - 273.15) * 100) / 100);
       const feel_temp = Math.round((data.main.feels_like - 273.15) * 100) / 100;
       const cloud = data.weather[0].description;
       console.log(cloud);
