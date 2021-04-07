@@ -1,10 +1,8 @@
-<div class="formtest">
-  <form action="<%= events_path %>">
+<div class="search d-flex flex-column align-items-center">
+  <form hidden action="<%= events_path %>" class="form-search">
     <div class="form-sort">
-      <input type="radio" name="search[sort]" id="search_sort_date" value="date">
-      <label for="search_sort_date">date</label>
-      <input type="radio" name="search[sort]" id="search_sort_distance" value="distance">
-      <label for="search_sort_distance">distance</label>
+      <label for="search_sort_date"><input type="radio" name="search[sort]" id="search_sort_date" value="date"><%= image_tag "icons/calendar.svg" %></label>
+      <label for="search_sort_distance"><input type="radio" name="search[sort]" id="search_sort_distance" value="distance"><%= image_tag "icons/map_marker.svg" %></label>
     </div>
     <div class="form-category">
     <% Category.all.each do |category| %>
@@ -14,15 +12,10 @@
       </label>
     <% end %>
     </div>
-    <div class="form-teammate">
-      <label for="search_teammate">include only teammates</label>
-      <input type="checkbox" name="search[teammate]" id="search_teammate" value="true">
-    </div>
-    <input type="submit" value="Submit" formmethod="get">
+    <input type="submit" value="Search" formmethod="get">
   </form>
-<div>
-
-<h3><%= "#{@events.count} events"%></h3>
+  <span id="btn-filter">Filter options</span>
+</div>
 <% @events.each do |event| %>
   <%= link_to event_path(event), class: "text-reset" do %>
     <div class="mb-1">
