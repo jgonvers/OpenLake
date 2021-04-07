@@ -15,8 +15,10 @@
     <input type="submit" value="Search" formmethod="get">
   </form>
 </div>
-<span id="btn-filter">Filter options</span>
-<h5 style="font-size: 17px; margin-left: 10px; margin-top: 13px; color: #70757A; ">You have <strong><%= @events.count %></strong> sports events <strong>around you</strong></h5>
+<div class="header d-flex flex-row justify-content-between align-items-center">
+  <h5 style="font-size: 14px; margin-left: 10px; margin-top: 13px; color: #70757A; ">You have <strong><%= @events.count %></strong> sports events <strong>around you</strong></h5>
+  <div id="btn-filter"><p>Filter</p></div>
+</div>
 <% @events.each do |event| %>
   <%= link_to event_path(event), class: "text-reset" do %>
     <div class="mb-1">

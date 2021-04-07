@@ -14,7 +14,7 @@
       padding: 5px;
       margin-bottom: 0;
     }
-    
+
     input {
       position:absolute;
       visibility: hidden;
@@ -28,17 +28,18 @@
     }
 
   }
+
   .form-category {
     display: flex;
     flex-wrap: wrap;
     width: 150px;
     font-size: 23px;
-    
+
     input {
       position:absolute;
       visibility: hidden;
     }
-  
+
     i {
       position:relative;
       margin-left: 7px;
@@ -60,6 +61,16 @@
     border-style: none;
   }
 }
+
+#btn-filter {
+    padding: 3px;
+    font-size: 13px;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 10px;
+    background-color: $primary-color;
+  }
+
 .hidden {
   display: none;
 }
