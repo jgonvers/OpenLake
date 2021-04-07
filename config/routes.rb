@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   post "/users/:id/link/accepted", to: "teammate_links#accepted", as: :accepted_teammate
   delete "/users/:id/link/destroy", to: "teammate_links#destroy", as: :destroy_teammate
   get "/user/pending-teammates", to: "users#pending_teammates", as: :pending_teammates
+  get "/test", to: "users#test"
 end
