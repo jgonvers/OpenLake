@@ -21,7 +21,7 @@ File.foreach("./db/address.txt") { |line| address << line.strip }
 Avatar_folder_m = "./app/assets/images/seed/user/male/"
 Avatar_folder_f = "./app/assets/images/seed/user/female/"
 
-Image_extension = [".jpg", ".png", ".jpeg"]
+Image_extension = [".jpg", ".png", ".jpeg", ".JPG"]
 
 Address_list = address
 
