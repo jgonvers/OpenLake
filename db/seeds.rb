@@ -85,21 +85,6 @@ end
     volleyball: 'fa-volleyball-ball'
   }
 
-puts "create 1 user kilian@email.com"
-u = User.new(
-  first_name: "Kilian",
-  last_name: "Bayhat",
-  content: "Hi guys <3 My name is Kilian, but everybody calls me Kiki. I come from Québec and I hate when people make fun of my accent. I came to Switzerland to study nuclear physics. I love biking, running and dancing. My favourite band is ABBA.",
-  password: '1234567',
-  password_confirmation: '1234567',
-  email: "kilian@email.com",
-  address: "chemin de montolivet 35, 1006 Lausanne"
-  )
-u.save!
-file = File.open("./app/assets/images/seed/user/image (1).png")
-u.photo.attach(io: file, filename: "avatar-#{u.id}.jpg", content_type: 'image/jpg')
-
-
 puts "create 1 user maxime@email.com"
 u = User.new(
   first_name: "Maxime",
@@ -108,7 +93,7 @@ u = User.new(
   password: '1234567',
   password_confirmation: '1234567',
   email: "maxime@email.com",
-  address: "Moudon"
+  address: "chemin de montolivet 35, 1006 Lausanne"
   )
 u.save!
 file = File.open("./app/assets/images/seed/user/image.png")
@@ -135,13 +120,28 @@ until avatars_m.count.zero? && avatars_f.count.zero?
   end
 end
 
+
+puts "create 1 user kilian@email.com"
+u = User.new(
+  first_name: "Kilian",
+  last_name: "Hayat",
+  content: "Hi guys <3 My name is Kilian, but everybody calls me Kiki. I come from Québec and I hate when people make fun of my accent. I came to Switzerland to study nuclear physics. I love biking, running and dancing. My favourite band is ABBA.",
+  password: '1234567',
+  password_confirmation: '1234567',
+  email: "kilian@email.com",
+  address: "Moudon"
+  )
+u.save!
+file = File.open("./app/assets/images/seed/user/image (1).png")
+u.photo.attach(io: file, filename: "avatar-#{u.id}.jpg", content_type: 'image/jpg')
+
 user = User.all
 date = Time.now - 10 * 3600 * 24
 us = User.first
-us2 = User.second
+us2 = u
 categories = Category.all
 
-puts "create 5 event by maxime past"
+puts "create 5 event by kilian past"
 n=-6
 5.times do
   c = categories.sample
@@ -174,8 +174,8 @@ n=-6
   puts "."
 end
 
-puts "create 5 event by maxime future"
-n=1
+puts "create 5 event by kilian future"
+n=3
 5.times do
   c = categories.sample
   u = us2
@@ -212,7 +212,7 @@ puts "create 50 other event with 5 attendant"
 50.times do
   c = categories.sample
   u = us
-  while u == us
+  while u == us || u == us2
     u = user.sample
   end
   date = date_generator(n)
