@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   def events_created
     @events = User.find(params[:id]).created_events
     @events = @events.sort_by(&:start_time).reverse
-    render "events/index"
+    render "events/index_clean"
   end
 
   def events_attended
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     @events = @events_created.nil? ? @events_participated : @events_participated + @events_created
     @events = @events.select { |event| event.end_time <= Time.now }
     @events = @events.sort_by(&:end_time).reverse
-    render "events/index"
+    render "events/index_clean"
   end
 
   def pending_teammates
