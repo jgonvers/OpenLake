@@ -29,7 +29,7 @@
   <% if (current_user.nil? || current_user != @user) && !@past_events.count.zero? %>
     <hr>
     <div class="d-flex flex-row justify-content-between align-items-center mb-3">
-        <h3 class="pl-3 mb-0">Events Created</h3>
+        <h3 class="pl-3 mb-0">Past Events Created</h3>
         <% unless @rating.negative? %>
           <%= render "reviews/rating", rating: @rating %>
         <% end %>
