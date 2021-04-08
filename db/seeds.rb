@@ -135,8 +135,6 @@ until avatars_m.count.zero? && avatars_f.count.zero?
   end
 end
 
-
-
 user = User.all
 date = Time.now - 10 * 3600 * 24
 us = User.first
