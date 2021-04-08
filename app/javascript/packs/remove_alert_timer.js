@@ -6,4 +6,4 @@ function removeAlert() {
 }
 
 
-setTimeout(removeAlert, 2500)
+setTimeout(removeAlert, 4000)
