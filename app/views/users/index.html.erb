@@ -1,3 +1,13 @@
+<div class="user-searchbar">
+  <%= form_tag users_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find a T-Mate"  %>
+    <% end %>
+</div>
+
+
 <% @users.each do |user| %>
   <div class="mb-1">
     <%= render "users/card_user", user:user %>
