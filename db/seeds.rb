@@ -207,9 +207,43 @@ n=3
   puts "."
 end
 
-n = -10
+n = -20
 puts "create 50 other event with 5 attendant"
-50.times do
+15.times do
+  c = categories.sample
+  u = us
+  while u == us || u == us2
+    u = user.sample
+  end
+  date = date_generator(n)
+  e = Event.new(
+    title: "#{Faker::Adjective.positive} #{c.name.downcase}".titleize,
+    address: Address_list.sample,
+    creator: u,
+    content: Lorem_event,
+    category: c,
+    start_time: date,
+    end_time: date + [1, 2].sample * 3600,
+    participants_maximum: (5..25).to_a.sample
+  )
+  e.save!
+  5.times do
+    u2 = user.sample
+    if u2 != u && !(e.users.include? u2)
+      Attendance.new(
+        user: u2,
+        event: e
+      ).save!
+    end
+  end
+  n += 1
+  puts "."
+end
+
+
+n = 10
+puts "create 50 other event with 5 attendant"
+25.times do
   c = categories.sample
   u = us
   while u == us || u == us2
@@ -317,4 +351,70 @@ puts "create 1 specific event by maxime"
     end
   end
   puts "."
+end
+
+# [[title, address, category], ...]
+event_array = [
+  ["tour de lavaux", "Route de Claie-aux-Moines 5, 1073 Savigny", "biking"],
+  ["foot 5v5", "Chemin des Tuilières, 1028 Préverenges", "football"],
+  ["jogging chill", "Avenue d'Echallens 109, 1004 Lausanne", "running"],
+  ["bowling tournament", "Chemin du Tennis 3, 1026 Echandens", "bowling"],
+  ["beach volley 3v3", "Avenue de la Plage 23, 1028 Préverenges", "volleyball"],
+  ["Winter swimming", "Village 180, 2406 La Brévine", "swimming"],
+  ["early-birds jogging", "Route du Signal 2, 1018 Lausanne", "running"],
+  ["drunken football", "Route des Plaines-du-Loup 7, 1018 Lausanne", "football"],
+  ["burger and balls", "Avenue de Vertou 6, 1110 Morges", "football"],
+]
+
+
+
+
+
+
+puts "create specific events"
+n = 2
+event_array.each do |event|
+  u = us
+  while u == us || u == us2
+    u = user.sample
+  end
+  date = date_generator(n)
+  e = Event.new(
+    title: event[0].titleize,
+    address: event[1],
+    creator: u,
+    content: Lorem_event,
+    category: Category.where(name: event[2])[0],
+    start_time: date,
+    end_time: date + [1, 2].sample * 3600,
+    participants_maximum: (5..25).to_a.sample
+  )
+  e.save!
+  5.times do
+    u2 = us
+    while u2 == us || u2 == us2 
+      u2 = user.sample
+    end
+    if u2 != u && !(e.users.include? u2)
+      Attendance.new(
+        user: u2,
+        event: e
+      ).save!
+    end
+  end
+
+  3.times do
+    u2 = us
+    while u2 == us || u2 == us2 
+      u2 = us.teammates.sample
+    end
+    if u2 != u && !(e.users.include? u2)
+      Attendance.new(
+        user: u2,
+        event: e
+      ).save!
+    end
+  end
+  puts "."
+  n+=1
 end
