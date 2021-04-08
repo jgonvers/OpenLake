@@ -4,7 +4,7 @@
       <h1 style="width: 300px;"> <%= "#{@event.title}" %></h1>
       <div class="" id="date-and-time">
         <p><i class="fas fa-calendar-alt"></i> <%= @event.start_time.strftime("%e %B, %Y") %></p>
-        <p><i class="far fa-clock mt-2"></i> <%= "#{@event.start_time.strftime("%k:%m")} to #{@event.end_time.strftime("%k:%m")}"%></p>
+        <p><i class="far fa-clock mt-2"></i> <%= "#{@event.start_time.strftime("%k:%M")} to #{@event.end_time.strftime("%k:%M")}"%></p>
       </div>
     </div>
   </div>
