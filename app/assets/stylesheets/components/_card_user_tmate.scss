@@ -7,14 +7,18 @@
   box-shadow: 0 0 8px rgba(0,0,0,0.08);
   .btn-pending {
     color: black;
-    padding: 10px 10px;
+    padding: 7px 10px;
     border-radius: 5px;
     margin-left: 10px
   }
   .accepted {
-    background-color: #25e632;
-  } 
+    background-color: #73ed6a;
+    font-size: 17px;
+    padding: 6px 20px;
+  }
   .refused {
-    background-color: red;
+    background-color: #fc4141;
+    font-size: 17px;
+    padding: 6px 23px;
   }
 }
