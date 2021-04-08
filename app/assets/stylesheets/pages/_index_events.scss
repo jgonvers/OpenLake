@@ -9,10 +9,10 @@
     flex-direction: column;
     margin-left: 20px;
     img {
-      width: 35px;
-      height: 35px;
-      padding: 5px;
-      margin-bottom: 0;
+      width: 44px;
+      height: 44px;
+      padding: 8px;
+      margin-bottom: 2px;
     }
 
     input {
@@ -33,7 +33,15 @@
     display: flex;
     flex-wrap: wrap;
     width: 150px;
-    font-size: 23px;
+    font-size: 30px;
+
+    .fa-volleyball-ball {
+     margin-left: 4px;
+    }
+
+    .fa-swimmer {
+      margin-left: 15px;
+     }
 
     input {
       position:absolute;
