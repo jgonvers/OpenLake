@@ -4,6 +4,7 @@
       <label for="search_sort_date"><input type="radio" name="search[sort]" id="search_sort_date" value="date"><%= image_tag "icons/calendar.svg" %></label>
       <label for="search_sort_distance"><input type="radio" name="search[sort]" id="search_sort_distance" value="distance"><%= image_tag "icons/map_marker.svg" %></label>
     </div>
+    
     <div class="form-category">
     <% Category.all.each do |category| %>
       <label for="category<%= category.id %>">
