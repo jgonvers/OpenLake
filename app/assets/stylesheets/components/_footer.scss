@@ -28,9 +28,14 @@
   display: flex;
 }
 
+.teammate_request p {
+  display: flex;
+  color: #030301;
+}
+
 .teammate_nb {
   font-size: 25px;
-  color: black;
+  color: #030301;
   font-style: bold;
   margin-top: -6px;
   margin-left: -5px;
@@ -42,5 +47,12 @@
   width: 37px;
 }
 
+.icon-white path {
+fill: #f7f4f4
+}
 
+#img_user_network {
+    width: 40px;
+    height: 40px;
+}
 

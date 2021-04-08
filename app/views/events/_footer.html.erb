@@ -1,7 +1,7 @@
 <footer class>
   <div class="footer footer-size">
     <%= link_to image_tag("icons/home.svg"), events_path %>
-    <%= link_to image_tag("icons/users-solid.svg"), users_path %>
+    <%= link_to image_tag("icons/users-solid.svg"), users_path, id: "img_user_network" %>
     <%= link_to image_tag("icons/plus.svg"), new_event_path %>
     <div class="teammate_request">
       <%= link_to image_tag("icons/user-solid.svg"), pending_teammates_path, class: "img_user" %>
