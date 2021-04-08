@@ -89,7 +89,7 @@ puts "create 1 user maxime@email.com"
 u = User.new(
   first_name: "Maxime",
   last_name: "Jost",
-  content: "My name is Maxime, I am lonely and have no friends. That's probably because my shower hasn't been working in 5 years. I hope this app will allow me to meet nice people.",
+  content: "My name is Maxime, I'm a Scottish student currently working on a thesis whose topic is the Influence of Western Litterature on Post-Modern Industrialism. I'm also a sports-lover and I love eating cupcakes.",
   password: '1234567',
   password_confirmation: '1234567',
   email: "maxime@email.com",
