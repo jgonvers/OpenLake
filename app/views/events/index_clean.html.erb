@@ -1,0 +1,7 @@
+<% @events.each do |event| %>
+  <%= link_to event_path(event), class: "text-reset" do %>
+    <div class="mb-1">
+      <%= render 'events/card_event' , event:event %>
+    </div>
+  <% end %>
+<% end %>
