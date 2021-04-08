@@ -38,12 +38,6 @@ def date_generator(jour_decalage)
   date += jour_decalage * 24*60*60
 end
 
-10.times do
-  puts date_generator(7)
-end
-
-exit()
-
 def create_male(image_list)
   fname = Faker::Name.male_first_name
   lname = Faker::Name.last_name
@@ -128,17 +122,19 @@ category.each do |cat, val|
   ).save!
 end
 
-puts "create male user"
-until avatars_m.count.zero?
-  create_male(avatars_m)
-  puts "."
+puts "create users"
+until avatars_m.count.zero? && avatars_f.count.zero?
+  unless avatars_m.count.zero?
+    create_male(avatars_m)
+    puts "."
+  end
+
+  unless avatars_f.count.zero?
+    create_female(avatars_f)
+    puts "."
+  end
 end
 
-puts "create female user"
-until avatars_f.count.zero?
-  create_female(avatars_f)
-  puts "."
-end
 
 
 user = User.all
@@ -160,7 +156,7 @@ n=-6
     content: Lorem_event,
     category: c,
     start_time: date,
-    end_time: date + 1, 2].sample * 3600,
+    end_time: date + [1, 2].sample * 3600,
     participants_maximum: (5..25).to_a.sample
   )
   e.save!
@@ -193,7 +189,7 @@ n=1
     content: Lorem_event,
     category: c,
     start_time: date,
-    end_time: date + 1, 2].sample * 3600,
+    end_time: date + [1, 2].sample * 3600,
     participants_maximum: (5..25).to_a.sample
   )
   e.save!
@@ -228,7 +224,7 @@ puts "create 50 other event with 5 attendant"
     creator: u,
     content: Lorem_event,
     category: c,
-    start_time: date
+    start_time: date,
     end_time: date + [1, 2].sample * 3600,
     participants_maximum: (5..25).to_a.sample
   )
