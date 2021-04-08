@@ -55,20 +55,28 @@
 
   }
   input[type="submit"] {
-    margin-right: 20px;
-    background-color: $primary-color;
+    padding: 3px 10px;
+    font-size: 12px;
     border-radius: 5px;
+    margin-top: 3px;
+    text-align: center;
+    margin-right: 10px;
+    color: #70757A;
     border-style: none;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    background-color: white;
   }
 }
 
 #btn-filter {
-    padding: 3px;
-    font-size: 13px;
+    padding: 3px 10px;
+    font-size: 12px;
     border-radius: 5px;
+    margin-top: 3px;
     text-align: center;
     margin-right: 10px;
-    background-color: $primary-color;
+    color: #70757A;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
   }
 
 .hidden {

@@ -17,7 +17,7 @@
 </div>
 <div class="header d-flex flex-row justify-content-between align-items-center">
   <h5 style="font-size: 15px; margin-left: 10px; margin-top: 13px; color: #70757A; ">You have <strong><%= @events.count %></strong> sports events <strong>around you</strong></h5>
-  <div id="btn-filter"><p>Filter</p></div>
+  <div id="btn-filter"><p><strong>Filter</strong></p></div>
 </div>
 <% @events.each do |event| %>
   <%= link_to event_path(event), class: "text-reset" do %>
