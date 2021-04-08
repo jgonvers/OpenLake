@@ -25,10 +25,18 @@ Image_extension = [".jpg", ".png", ".jpeg"]
 
 Address_list = address
 
-Lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
+Lorem_user = "Hello everybody, I'm looking forward to doing sports with you all! I am available every day after 6 pm. Feel free to T-Mate me!"
+Lorem_event = "Little warm-up event, nothing too crazy, feel free to join and let's have fun!"
 avatars_m = Dir.entries(Avatar_folder_m).select { |file| Image_extension.include? File.extname(file) }
 avatars_f = Dir.entries(Avatar_folder_f).select { |file| Image_extension.include? File.extname(file) }
+
+def date_generator(jour_decalage)
+  now = Time.now
+  hour = (14...18).to_a.sample
+  min = [0, 15, 30, 45].sample
+  date = Time.new(now.year, now.month, now.day, hour, min)
+  date += jour_decalage * 24*60*60
+end
 
 def create_male(image_list)
   fname = Faker::Name.male_first_name
@@ -36,7 +44,7 @@ def create_male(image_list)
   un = User.new(
     first_name: fname,
     last_name: lname,
-    content: Lorem,
+    content: Lorem_user,
     password: '1234567',
     password_confirmation: '1234567',
     email: "#{fname.downcase}.#{lname.downcase}@email.com",
@@ -55,7 +63,7 @@ def create_female(image_list)
   un = User.new(
     first_name: fname,
     last_name: lname,
-    content: Lorem,
+    content: Lorem_user,
     password: '1234567',
     password_confirmation: '1234567',
     email: "#{fname.downcase}.#{lname.downcase}@email.com",
@@ -77,14 +85,14 @@ end
     volleyball: 'fa-volleyball-ball'
   }
 
-puts "create 1 user camilla@email.com"
+puts "create 1 user kilian@email.com"
 u = User.new(
-  first_name: "Camilla",
-  last_name: Faker::Name.last_name,
-  content: "My name is Camilla, I used to live in the UK but after my divorce with Charles I have decided to come and live in Switzerland where noone knows me. I like knitting and horse-riding, and I would like to meet new people. I don't speak french very well, so if a cute guy wants to teach me, I am open to anything ;)",
+  first_name: "Kilian",
+  last_name: "Bayhat",
+  content: "Hi guys <3 My name is Kilian, but everybody calls me Kiki. I come from Québec and I hate when people make fun of my accent. I came to Switzerland to study nuclear physics. I love biking, running and dancing. My favourite band is ABBA.",
   password: '1234567',
   password_confirmation: '1234567',
-  email: "camilla@email.com",
+  email: "kilian@email.com",
   address: "chemin de montolivet 35, 1006 Lausanne"
   )
 u.save!
@@ -114,18 +122,18 @@ category.each do |cat, val|
   ).save!
 end
 
-puts "create male user"
-until avatars_m.count.zero?
-  create_male(avatars_m)
-  puts "."
-end
+puts "create users"
+until avatars_m.count.zero? && avatars_f.count.zero?
+  unless avatars_m.count.zero?
+    create_male(avatars_m)
+    puts "."
+  end
 
-puts "create female user"
-until avatars_f.count.zero?
-  create_female(avatars_f)
-  puts "."
+  unless avatars_f.count.zero?
+    create_female(avatars_f)
+    puts "."
+  end
 end
-
 
 user = User.all
 date = Time.now - 10 * 3600 * 24
@@ -133,19 +141,20 @@ us = User.first
 us2 = User.second
 categories = Category.all
 
-puts "create 5 event by maxime"
-n=1
+puts "create 5 event by maxime past"
+n=-6
 5.times do
   c = categories.sample
   u = us2
+  date = date_generator(n)
   e = Event.new(
     title: "#{Faker::Adjective.positive} #{c.name.downcase}".titleize,
     address: Address_list.sample,
     creator: u,
-    content: Lorem,
+    content: Lorem_event,
     category: c,
-    start_time: date + n*60*60*24 - [1, 0].sample * 3600,
-    end_time: date + n*60*60*24 + [1, 2].sample * 3600,
+    start_time: date,
+    end_time: date + [1, 2].sample * 3600,
     participants_maximum: (5..25).to_a.sample
   )
   e.save!
@@ -165,6 +174,40 @@ n=1
   puts "."
 end
 
+puts "create 5 event by maxime future"
+n=1
+5.times do
+  c = categories.sample
+  u = us2
+  date = date_generator(n)
+  e = Event.new(
+    title: "#{Faker::Adjective.positive} #{c.name.downcase}".titleize,
+    address: Address_list.sample,
+    creator: u,
+    content: Lorem_event,
+    category: c,
+    start_time: date,
+    end_time: date + [1, 2].sample * 3600,
+    participants_maximum: (5..25).to_a.sample
+  )
+  e.save!
+  5.times do
+    u2 = us
+    while u2 == us || u2 == us2 
+      u2 = user.sample
+    end
+    if u2 != u && !(e.users.include? u2)
+      Attendance.new(
+        user: u2,
+        event: e
+      ).save!
+    end
+  end
+  n += 1
+  puts "."
+end
+
+n = -10
 puts "create 50 other event with 5 attendant"
 50.times do
   c = categories.sample
@@ -172,14 +215,15 @@ puts "create 50 other event with 5 attendant"
   while u == us
     u = user.sample
   end
+  date = date_generator(n)
   e = Event.new(
     title: "#{Faker::Adjective.positive} #{c.name.downcase}".titleize,
     address: Address_list.sample,
     creator: u,
-    content: Lorem,
+    content: Lorem_event,
     category: c,
-    start_time: date + n*60*60*24 - [1, 0].sample * 3600,
-    end_time: date + n*60*60*24 + [1, 2].sample * 3600,
+    start_time: date,
+    end_time: date + [1, 2].sample * 3600,
     participants_maximum: (5..25).to_a.sample
   )
   e.save!
@@ -196,26 +240,81 @@ puts "create 50 other event with 5 attendant"
   puts "."
 end
 
-puts "add up to 3 teammates to user@email.com"
-3.times do 
+puts "add up to 10 teammates to kilian@email.com"
+10.times do 
   u2 = us
-  while u2 == us
+  while u2 == us || u2 == us2
     u2 = user.sample
   end
   teammate_create(us, u2)
   puts "."
 end
 
-puts "create 25 teammates links"
-25.times do
+puts "add up to 20 teammates to maxime@email.com"
+20.times do 
+  u2 = us
+  while u2 == us || u2 == us2
+    u2 = user.sample
+  end
+  teammate_create(us2, u2)
+  puts "."
+end
+
+puts "create 50 teammates links"
+50.times do
   u = us
-  while u == us
+  while u == us || u == us2
     u = user.sample
   end
   u2 = u
-  while u == u2 || u2 == us
+  while u2 == u || u2 == us2 || u2 == us
     u2 = user.sample
   end
   teammate_create(u, u2)
+  puts "."
+end
+
+
+
+puts "create 1 specific event by maxime"
+1.times do
+  u = us2
+  date = Time.new(2021,04,10,10,00)
+  e = Event.new(
+    title: "agonizing Swimming".titleize,
+    address: "Place de la Navigation 3, 1006 Lausanne",
+    creator: u,
+    content: "I'm organizing a little swimming session in the lake, it will be hard, no casual swimmers accepted ;) Then we can all grab a bite for lunch.",
+    category: Category.where(name:"swimming")[0],
+    start_time: date,
+    end_time: date + [1, 2].sample * 3600,
+    participants_maximum: (5..25).to_a.sample
+  )
+  e.save!
+  5.times do
+    u2 = us
+    while u2 == us || u2 == us2 
+      u2 = user.sample
+    end
+    if u2 != u && !(e.users.include? u2)
+      Attendance.new(
+        user: u2,
+        event: e
+      ).save!
+    end
+  end
+
+  3.times do
+    u2 = us
+    while u2 == us || u2 == us2 
+      u2 = us.teammates.sample
+    end
+    if u2 != u && !(e.users.include? u2)
+      Attendance.new(
+        user: u2,
+        event: e
+      ).save!
+    end
+  end
   puts "."
 end
