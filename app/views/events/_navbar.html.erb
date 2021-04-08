@@ -8,8 +8,8 @@
       <%= cl_image_tag current_user.photo.key, crop: :crop, gravity: :face, id: "navbar-avatar" %>
     </a>
   <% end %>
-  <h1 style="color: #f7f4f4; letter-spacing: 3px;">Open ≈ Lake</h1>
+  <h1 style="color: #030301; letter-spacing: 3px;">Open ≈ Lake</h1>
   <%= link_to destroy_user_session_path, method: :delete do %>
-    <i class="fas fa-sign-out-alt"></i>
+    <i class="fas fa-sign-out-alt sign_out"></i>
   <% end %>
 </div>
