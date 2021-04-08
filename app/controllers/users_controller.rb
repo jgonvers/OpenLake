@@ -18,6 +18,7 @@ class UsersController < ApplicationController
       @user.events.each { |event| @upcoming_events << event if event.start_time > Time.now }
       @user.events.each { |event| @past_events << event if event.end_time <= Time.now }
       @pending_teammates_count = pending_teammates.count
+      @upcoming_events = @upcoming_events.sort_by(&:start_time)
     else
       @past_events = []
       @user.created_events.each { |event| @past_events << event if event.end_time < Time.now }
@@ -33,6 +34,7 @@ class UsersController < ApplicationController
         @rating = rating.fdiv(reviews_count).round(0).to_i
       end
     end
+    @past_events = @past_events.sort_by(&:start_time)
   end
 
   def index
@@ -48,7 +50,7 @@ class UsersController < ApplicationController
   def teammates
     @user = User.find(params[:id]) # user ID
     @users = @user.accepted_teammates # array of teammates of @user
-    render 'users/index'
+    render 'users/index_clean'
   end
 
   def events_created
