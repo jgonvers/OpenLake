@@ -77,6 +77,14 @@
     box-shadow: none;
 }
 
+#logo {
+  color: #030301;
+  letter-spacing: 5px;
+  font-size: 28px;
+  border-radius: 5px;
+}
+
 .fa-sign-out-alt:before {
   color: #030301;
+  border: 1px black;
 }

@@ -1,15 +1,19 @@
-<div class="navbar d-flex justify-content-between">
-  <% if current_user.nil? %>
-    <a href="<%= new_user_session_path %>">
-      <%= image_tag "avatar/default.png", class:"navbar-avatar" %>
-    </a>
-  <% else %>
-    <a href="<%= logged_user_path %>">
-      <%= cl_image_tag current_user.photo.key, crop: :crop, gravity: :face, id: "navbar-avatar" %>
-    </a>
-  <% end %>
-  <h1 style="color: #030301; letter-spacing: 3px;">Open ≈ Lake</h1>
-  <%= link_to destroy_user_session_path, method: :delete do %>
-    <i class="fas fa-sign-out-alt sign_out"></i>
-  <% end %>
+<div class="navbar d-flex justify-content-between align-item-center">
+  <div class="avatar mb-1">
+    <% if current_user.nil? %>
+      <a href="<%= new_user_session_path %>">
+        <%= image_tag "avatar/default.png", class:"navbar-avatar" %>
+      </a>
+    <% else %>
+      <a href="<%= logged_user_path %>">
+        <%= cl_image_tag current_user.photo.key, crop: :crop, gravity: :face, id: "navbar-avatar" %>
+      </a>
+    <% end %>
+  </div>
+  <div class="title_logo mt-1"><h1 id="logo">Open ≈ Lake</h1></div>
+  <div class="log_out_button">
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class="fas fa-sign-out-alt sign_out"></i>
+    <% end %>
+  </div>
 </div>
