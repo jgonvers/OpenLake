@@ -5,7 +5,7 @@ class EventsController < ApplicationController
     @events = Event.geocoded.select { |event| event.start_time >= Time.now }
     return if params[:search].nil?
 
-    if params[:search][:sort].nil? || params[:search][:sort].nil? == 'distance'
+    if params[:search][:sort].nil? || params[:search][:sort] == 'distance'
       @events = @events.sort_by { |e| current_user.distance_to(e).round(0) }
     else
       @events = @events.sort_by(&:start_time)

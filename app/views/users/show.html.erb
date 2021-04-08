@@ -34,7 +34,7 @@
           <%= render "reviews/rating", rating: @rating %>
         <% end %>
       </div>
-    <% @past_events.reverse.each do |event| %>
+    <% @past_events.each do |event| %>
       <div>
           <div class="mb-1">
             <a href="<%= event_path(event) %>" class="text-reset">
