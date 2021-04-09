@@ -25,7 +25,7 @@ Image_extension = [".jpg", ".png", ".jpeg", ".JPG"]
 
 Address_list = address
 
-Lorem_user = "Hello everybody, I'm looking forward to doing sports with you all! I am available every day after 6 pm. Feel free to T-Mate me!"
+Lorem_user = "Hello everybody, I'm looking forward to doing sports with you all! I am available every day, whole day long (currently unemployed). Feel free to T-Mate me!"
 Lorem_event = "Little warm-up event, nothing too crazy, feel free to join and let's have fun!"
 avatars_m = Dir.entries(Avatar_folder_m).select { |file| Image_extension.include? File.extname(file) }
 avatars_f = Dir.entries(Avatar_folder_f).select { |file| Image_extension.include? File.extname(file) }
@@ -88,7 +88,7 @@ end
 puts "create 1 user maxime@email.com"
 u = User.new(
   first_name: "Maxime",
-  last_name: "Jost",
+  last_name: "McSim",
   content: "My name is Maxime, I'm a Scottish student currently working on a thesis whose topic is the Influence of Western Litterature on Post-Modern Industrialism. I'm also a sports-lover and I love eating cupcakes.",
   password: '1234567',
   password_confirmation: '1234567',
@@ -125,7 +125,7 @@ puts "create 1 user kilian@email.com"
 u = User.new(
   first_name: "Kilian",
   last_name: "Hayat",
-  content: "Hi guys <3 My name is Kilian, but everybody calls me Kiki. I come from Québec and I hate when people make fun of my accent. I came to Switzerland to study nuclear physics. I love biking, running and dancing. My favourite band is ABBA.",
+  content: "Hi guys <3 My name is Kilian, but everybody calls me Kiki. I come from Québec and I hate when people make fun of my accent. I came to Switzerland to study nuclear physics. I love pedalos and dancing. My favourite band is ABBA.",
   password: '1234567',
   password_confirmation: '1234567',
   email: "kilian@email.com",
@@ -141,7 +141,7 @@ us = User.first
 us2 = u
 categories = Category.all
 
-puts "create 5 event by kilian past"
+puts "create 5 past events by kilian"
 n=-6
 5.times do
   c = categories.sample
@@ -174,7 +174,7 @@ n=-6
   puts "."
 end
 
-puts "create 5 event by kilian future"
+puts "create 5 future events by kilian"
 n=3
 5.times do
   c = categories.sample
@@ -208,7 +208,7 @@ n=3
 end
 
 n = -20
-puts "create 50 other event with 5 attendant"
+puts "create 50 other events with 5 attendants"
 15.times do
   c = categories.sample
   u = us
@@ -242,7 +242,7 @@ end
 
 
 n = 10
-puts "create 50 other event with 5 attendant"
+puts "create 50 other events with 5 attendants"
 25.times do
   c = categories.sample
   u = us
@@ -274,7 +274,7 @@ puts "create 50 other event with 5 attendant"
   puts "."
 end
 
-puts "add up to 10 teammates to kilian@email.com"
+puts "add up to 10 T-Mates to kilian@email.com"
 10.times do 
   u2 = us
   while u2 == us || u2 == us2
@@ -284,7 +284,7 @@ puts "add up to 10 teammates to kilian@email.com"
   puts "."
 end
 
-puts "add up to 20 teammates to maxime@email.com"
+puts "add up to 20 T-Mates to maxime@email.com"
 20.times do 
   u2 = us
   while u2 == us || u2 == us2
@@ -315,7 +315,7 @@ puts "create 1 specific event by maxime"
   u = us2
   date = Time.new(2021,04,10,10,00)
   e = Event.new(
-    title: "agonizing Swimming".titleize,
+    title: "".titleize,
     address: "Place de la Navigation 3, 1006 Lausanne",
     creator: u,
     content: "I'm organizing a little swimming session in the lake, it will be hard, no casual swimmers accepted ;) Then we can all grab a bite for lunch.",
