@@ -160,7 +160,7 @@ n=-6
   e.save!
   5.times do
     u2 = us
-    while u2 == us || u2 == us2 
+    while u2 == us || u2 == us2
       u2 = user.sample
     end
     if u2 != u && !(e.users.include? u2)
@@ -193,7 +193,7 @@ n=3
   e.save!
   5.times do
     u2 = us
-    while u2 == us || u2 == us2 
+    while u2 == us || u2 == us2
       u2 = user.sample
     end
     if u2 != u && !(e.users.include? u2)
@@ -275,7 +275,7 @@ puts "create 50 other events with 5 attendants"
 end
 
 puts "add up to 10 T-Mates to kilian@email.com"
-10.times do 
+10.times do
   u2 = us
   while u2 == us || u2 == us2
     u2 = user.sample
@@ -285,7 +285,7 @@ puts "add up to 10 T-Mates to kilian@email.com"
 end
 
 puts "add up to 20 T-Mates to maxime@email.com"
-20.times do 
+20.times do
   u2 = us
   while u2 == us || u2 == us2
     u2 = user.sample
@@ -310,7 +310,7 @@ end
 
 
 
-puts "create 1 specific event by maxime"
+puts "create 1 specific event by kilian"
 1.times do
   u = us2
   date = Time.new(2021,04,10,10,00)
@@ -327,7 +327,7 @@ puts "create 1 specific event by maxime"
   e.save!
   5.times do
     u2 = us
-    while u2 == us || u2 == us2 
+    while u2 == us || u2 == us2
       u2 = user.sample
     end
     if u2 != u && !(e.users.include? u2)
@@ -340,7 +340,7 @@ puts "create 1 specific event by maxime"
 
   3.times do
     u2 = us
-    while u2 == us || u2 == us2 
+    while u2 == us || u2 == us2
       u2 = us.teammates.sample
     end
     if u2 != u && !(e.users.include? u2)
@@ -363,12 +363,29 @@ event_array = [
   ["Winter swimming", "Village 180, 2406 La Brévine", "swimming"],
   ["early-birds jogging", "Route du Signal 2, 1018 Lausanne", "running"],
   ["drunken football", "Route des Plaines-du-Loup 7, 1018 Lausanne", "football"],
-  ["burger and balls", "Avenue de Vertou 6, 1110 Morges", "football"],
+  ["10v10 Foot", "Avenue de Vertou 6, 1110 Morges", "football"],
+  ["5KM Practice", "Route des Arsenaux 9, 1700 Fribourg", "running"],
+  ["Tour De Vidy", "Avenue Gustave Doret, 1007 Lausanne", "biking"],
+  ["6v6 volleyball", "Rue des Corps-Saints 20, 1201 Genève", "volleyball"],
+  ["Hardcore Swim", "Place du Château 1, 1860 Aigle", "swimming"],
+  ["Competitive Bowling", "Allée Ferdi Kübler 12, 1860 Aigle", "bowling"],
+  ["Bowling With Friends", "Chemin de Bethléem, 1700 Fribourg", "bowling"],
+  ["Downhill  Mountain Bike", "Stalden 7-1, 1700 Fribourg", "biking"],
+  ["Wild Soccer Game", "Chemin du Pré-Cartelier 8-18, 1202 Genève", "football"],
+  ["Morning Swim", "Chemin des Mines 11, 1202 Genève", "swimming"],
+  ["Marathon Prep Run", "Rue J.-de-Hochberg 23-21, 2000 Neuchâtel", "running"],
+  ["Bike Til U Die", "Rue des Corps-Saints 20, 1201 Genève", "biking"],
+  ["7v7 Foot", "Route des Arsenaux 9, 1700 Fribourg", "football"],
+  ["Amateur Bowling", "Avenue Gustave Doret, 1007 Lausanne", "bowling"],
+  ["Volley Tournament", "Cité de l'Ouest 1, 2000 Neuchâtel", "volleyball"],
+  ["Bowling Competition", "Chemin du Petit-Pontarlier 7A, 2000 Neuchâtel", "bowling"],
+  ["Tour du Léman", "Avenue Nestlé, 1800 Vevey", "biking"],
+  ["No Rules Soccer", "Rue du Midi, 1800 Vevey", "football"],
+  ["Race Against Ducks", "Rue de l'Eglise Catholique 8, 1820 Montreux", "swimming"],
+  ["Slow-Paced 10K", "Rue de la Gare 33-29, 1820 Montreux", "running"],
+  ["Hot Beach-Volley", "Avenue de Belmont, 1820 Montreux", "volleyball"],
+  ["16km Practice", "Route des Arsenaux 9, 1700 Fribourg", "running"],
 ]
-
-
-
-
 
 
 puts "create specific events"
@@ -392,7 +409,7 @@ event_array.each do |event|
   e.save!
   5.times do
     u2 = us
-    while u2 == us || u2 == us2 
+    while u2 == us || u2 == us2
       u2 = user.sample
     end
     if u2 != u && !(e.users.include? u2)
@@ -405,7 +422,7 @@ event_array.each do |event|
 
   3.times do
     u2 = us
-    while u2 == us || u2 == us2 
+    while u2 == us || u2 == us2
       u2 = us.teammates.sample
     end
     if u2 != u && !(e.users.include? u2)
