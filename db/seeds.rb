@@ -151,21 +151,21 @@ past_event = [
 
 puts "create 5 past events by kilian"
 n=-6
-5.times do
-  c = categories.sample
+past_event.each do |event|
   u = us2
   date = date_generator(n)
-  e = Event.new(
-    title: "#{Faker::Adjective.positive} #{c.name.downcase}".titleize,
-    address: Address_list.sample,
+
+    e = Event.new(
+    title: event[0].titleize,
+    address: event[1],
     creator: u,
     content: Lorem_event,
-    category: c,
+    category: Category.where(name: event[2])[0],
     start_time: date,
     end_time: date + [1, 2].sample * 3600,
     participants_maximum: (5..25).to_a.sample
   )
-  e.save!
+    e.save!
   5.times do
     u2 = us
     while u2 == us || u2 == us2
