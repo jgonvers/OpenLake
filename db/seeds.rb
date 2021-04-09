@@ -141,6 +141,14 @@ us = User.first
 us2 = u
 categories = Category.all
 
+past_event = [
+  ["Bike in the Forest", "Chemin de Crève-Coeur, 1260 Nyon", "biking"],
+  ["Easy-Peasy Jogging", "Place du Château, 1260 Nyon", "running"],
+  ["Smash'em Up", "Weisses Quartier, 3011 Berne", "volleyball"],
+  ["Let's Run Together", "Route de la Longeraie 1, 1110 Morges", "running"],
+  ["Swim and Drown", "Chemin des Mines 11, 1202 Genève", "swimming"]
+]
+
 puts "create 5 past events by kilian"
 n=-6
 5.times do
@@ -174,37 +182,46 @@ n=-6
   puts "."
 end
 
+event_kilian =[["Tour du Léman", "Avenue Nestlé, 1800 Vevey", "biking"],
+              ["No Rules Soccer", "Rue du Midi, 1800 Vevey", "football"],
+              ["Race Against Ducks", "Rue de l'Eglise Catholique 8, 1820 Montreux", "swimming"],
+              ["Slow-Paced 10K", "Rue de la Gare 33-29, 1820 Montreux", "running"],
+              ["Hot Beach-Volley", "Avenue de Belmont, 1820 Montreux", "volleyball"],
+              ["16km Practice", "Route des Arsenaux 9, 1700 Fribourg", "running"]]
+
 puts "create 5 future events by kilian"
 n=3
-5.times do
+event_kilian.each do |event|
   c = categories.sample
   u = us2
   date = date_generator(n)
-  e = Event.new(
-    title: "#{Faker::Adjective.positive} #{c.name.downcase}".titleize,
-    address: Address_list.sample,
+
+    e = Event.new(
+    title: event[0].titleize,
+    address: event[1],
     creator: u,
     content: Lorem_event,
-    category: c,
+    category: Category.where(name: event[2])[0],
     start_time: date,
     end_time: date + [1, 2].sample * 3600,
     participants_maximum: (5..25).to_a.sample
   )
-  e.save!
-  5.times do
-    u2 = us
-    while u2 == us || u2 == us2
-      u2 = user.sample
+    e.save!
+
+    5.times do
+      u2 = us
+      while u2 == us || u2 == us2
+        u2 = user.sample
+      end
+      if u2 != u && !(e.users.include? u2)
+        Attendance.new(
+          user: u2,
+          event: e
+        ).save!
+      end
     end
-    if u2 != u && !(e.users.include? u2)
-      Attendance.new(
-        user: u2,
-        event: e
-      ).save!
-    end
-  end
-  n += 1
-  puts "."
+    n += 1
+    puts "."
 end
 
 n = -20
@@ -315,7 +332,7 @@ puts "create 1 specific event by kilian"
   u = us2
   date = Time.new(2021,04,10,10,00)
   e = Event.new(
-    title: "".titleize,
+    title: "Cold Water Swim".titleize,
     address: "Place de la Navigation 3, 1006 Lausanne",
     creator: u,
     content: "I'm organizing a little swimming session in the lake, it will be hard, no casual swimmers accepted ;) Then we can all grab a bite for lunch.",
@@ -378,13 +395,7 @@ event_array = [
   ["7v7 Foot", "Route des Arsenaux 9, 1700 Fribourg", "football"],
   ["Amateur Bowling", "Avenue Gustave Doret, 1007 Lausanne", "bowling"],
   ["Volley Tournament", "Cité de l'Ouest 1, 2000 Neuchâtel", "volleyball"],
-  ["Bowling Competition", "Chemin du Petit-Pontarlier 7A, 2000 Neuchâtel", "bowling"],
-  ["Tour du Léman", "Avenue Nestlé, 1800 Vevey", "biking"],
-  ["No Rules Soccer", "Rue du Midi, 1800 Vevey", "football"],
-  ["Race Against Ducks", "Rue de l'Eglise Catholique 8, 1820 Montreux", "swimming"],
-  ["Slow-Paced 10K", "Rue de la Gare 33-29, 1820 Montreux", "running"],
-  ["Hot Beach-Volley", "Avenue de Belmont, 1820 Montreux", "volleyball"],
-  ["16km Practice", "Route des Arsenaux 9, 1700 Fribourg", "running"],
+  ["Bowling Competition", "Chemin du Petit-Pontarlier 7A, 2000 Neuchâtel", "bowling"]
 ]
 
 
