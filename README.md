@@ -1,1 +1,2 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Application de creation de rencontre sportive par les utilisateurs. Créé comme projet final pour le Wagon. Interface faites pour Iphone 5.
+login: kilian@email.com pass:1234567
